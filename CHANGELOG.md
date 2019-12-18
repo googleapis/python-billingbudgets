@@ -1,4 +1,11 @@
 # Changelog
+### [0.1.1](https://www.github.com/googleapis/python-billingbudgets/compare/v0.1.0...v0.1.1) (2019-12-18)
+
+
+### Bug Fixes
+
+* **billingbudgets:** deprecate resource name helper methods (via synth) ([#9830](https://www.github.com/googleapis/python-billingbudgets/issues/9830)) ([34226ec](https://www.github.com/googleapis/python-billingbudgets/commit/34226ec22bbd458c882338d173fc34af6d6fe9c1))
+
 ## 0.2.0
 
 12-12-2019 12:36 PST
@@ -21,4 +28,3 @@
 
 ### Documentation
 - Add Python 2 sunset banner (via synth). ([#9813](https://github.com/googleapis/google-cloud-python/pull/9813))
-
