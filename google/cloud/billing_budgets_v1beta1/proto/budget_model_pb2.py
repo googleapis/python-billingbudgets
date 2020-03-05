@@ -639,7 +639,6 @@ LastPeriodAmount = _reflection.GeneratedProtocolMessageType(
   that is, there are no other options yet. Future configuration will be
   described here (for example, configuring a percentage of last period's
   spend).
-  
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.billing.budgets.v1beta1.LastPeriodAmount)
     ),
