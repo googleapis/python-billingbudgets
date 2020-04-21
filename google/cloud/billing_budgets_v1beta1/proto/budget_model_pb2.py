@@ -28,7 +28,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
         "\n(com.google.cloud.billing.budgets.v1beta1P\001ZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgets"
     ),
     serialized_pb=_b(
-        '\n=google/cloud/billing/budgets_v1beta1/proto/budget_model.proto\x12$google.cloud.billing.budgets.v1beta1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x17google/type/money.proto"\xde\x03\n\x06\x42udget\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12H\n\rbudget_filter\x18\x03 \x01(\x0b\x32,.google.cloud.billing.budgets.v1beta1.FilterB\x03\xe0\x41\x01\x12G\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x32.google.cloud.billing.budgets.v1beta1.BudgetAmountB\x03\xe0\x41\x02\x12Q\n\x0fthreshold_rules\x18\x05 \x03(\x0b\x32\x33.google.cloud.billing.budgets.v1beta1.ThresholdRuleB\x03\xe0\x41\x02\x12S\n\x10\x61ll_updates_rule\x18\x06 \x01(\x0b\x32\x34.google.cloud.billing.budgets.v1beta1.AllUpdatesRuleB\x03\xe0\x41\x01\x12\x11\n\x04\x65tag\x18\x07 \x01(\tB\x03\xe0\x41\x01:]\xea\x41Z\n$billingbudgets.googleapis.com/Budget\x12\x32\x62illingAccounts/{billing_account}/budgets/{budget}"\xa5\x01\n\x0c\x42udgetAmount\x12.\n\x10specified_amount\x18\x01 \x01(\x0b\x32\x12.google.type.MoneyH\x00\x12T\n\x12last_period_amount\x18\x02 \x01(\x0b\x32\x36.google.cloud.billing.budgets.v1beta1.LastPeriodAmountH\x00\x42\x0f\n\rbudget_amount"\x12\n\x10LastPeriodAmount"\xcd\x01\n\rThresholdRule\x12\x1e\n\x11threshold_percent\x18\x01 \x01(\x01\x42\x03\xe0\x41\x02\x12S\n\x0bspend_basis\x18\x02 \x01(\x0e\x32\x39.google.cloud.billing.budgets.v1beta1.ThresholdRule.BasisB\x03\xe0\x41\x01"G\n\x05\x42\x61sis\x12\x15\n\x11\x42\x41SIS_UNSPECIFIED\x10\x00\x12\x11\n\rCURRENT_SPEND\x10\x01\x12\x14\n\x10\x46ORECASTED_SPEND\x10\x02"H\n\x0e\x41llUpdatesRule\x12\x19\n\x0cpubsub_topic\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x1b\n\x0eschema_version\x18\x02 \x01(\tB\x03\xe0\x41\x02"\x90\x02\n\x06\x46ilter\x12\x15\n\x08projects\x18\x01 \x03(\tB\x03\xe0\x41\x01\x12\x66\n\x16\x63redit_types_treatment\x18\x04 \x01(\x0e\x32\x41.google.cloud.billing.budgets.v1beta1.Filter.CreditTypesTreatmentB\x03\xe0\x41\x01\x12\x15\n\x08services\x18\x03 \x03(\tB\x03\xe0\x41\x01"p\n\x14\x43reditTypesTreatment\x12&\n"CREDIT_TYPES_TREATMENT_UNSPECIFIED\x10\x00\x12\x17\n\x13INCLUDE_ALL_CREDITS\x10\x01\x12\x17\n\x13\x45XCLUDE_ALL_CREDITS\x10\x02\x42y\n(com.google.cloud.billing.budgets.v1beta1P\x01ZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgetsb\x06proto3'
+        '\n=google/cloud/billing/budgets_v1beta1/proto/budget_model.proto\x12$google.cloud.billing.budgets.v1beta1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x17google/type/money.proto"\xde\x03\n\x06\x42udget\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12H\n\rbudget_filter\x18\x03 \x01(\x0b\x32,.google.cloud.billing.budgets.v1beta1.FilterB\x03\xe0\x41\x01\x12G\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x32.google.cloud.billing.budgets.v1beta1.BudgetAmountB\x03\xe0\x41\x02\x12Q\n\x0fthreshold_rules\x18\x05 \x03(\x0b\x32\x33.google.cloud.billing.budgets.v1beta1.ThresholdRuleB\x03\xe0\x41\x01\x12S\n\x10\x61ll_updates_rule\x18\x06 \x01(\x0b\x32\x34.google.cloud.billing.budgets.v1beta1.AllUpdatesRuleB\x03\xe0\x41\x01\x12\x11\n\x04\x65tag\x18\x07 \x01(\tB\x03\xe0\x41\x01:]\xea\x41Z\n$billingbudgets.googleapis.com/Budget\x12\x32\x62illingAccounts/{billing_account}/budgets/{budget}"\xa5\x01\n\x0c\x42udgetAmount\x12.\n\x10specified_amount\x18\x01 \x01(\x0b\x32\x12.google.type.MoneyH\x00\x12T\n\x12last_period_amount\x18\x02 \x01(\x0b\x32\x36.google.cloud.billing.budgets.v1beta1.LastPeriodAmountH\x00\x42\x0f\n\rbudget_amount"\x12\n\x10LastPeriodAmount"\xcd\x01\n\rThresholdRule\x12\x1e\n\x11threshold_percent\x18\x01 \x01(\x01\x42\x03\xe0\x41\x02\x12S\n\x0bspend_basis\x18\x02 \x01(\x0e\x32\x39.google.cloud.billing.budgets.v1beta1.ThresholdRule.BasisB\x03\xe0\x41\x01"G\n\x05\x42\x61sis\x12\x15\n\x11\x42\x41SIS_UNSPECIFIED\x10\x00\x12\x11\n\rCURRENT_SPEND\x10\x01\x12\x14\n\x10\x46ORECASTED_SPEND\x10\x02"H\n\x0e\x41llUpdatesRule\x12\x19\n\x0cpubsub_topic\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x1b\n\x0eschema_version\x18\x02 \x01(\tB\x03\xe0\x41\x02"\x90\x02\n\x06\x46ilter\x12\x15\n\x08projects\x18\x01 \x03(\tB\x03\xe0\x41\x01\x12\x66\n\x16\x63redit_types_treatment\x18\x04 \x01(\x0e\x32\x41.google.cloud.billing.budgets.v1beta1.Filter.CreditTypesTreatmentB\x03\xe0\x41\x01\x12\x15\n\x08services\x18\x03 \x03(\tB\x03\xe0\x41\x01"p\n\x14\x43reditTypesTreatment\x12&\n"CREDIT_TYPES_TREATMENT_UNSPECIFIED\x10\x00\x12\x17\n\x13INCLUDE_ALL_CREDITS\x10\x01\x12\x17\n\x13\x45XCLUDE_ALL_CREDITS\x10\x02\x42y\n(com.google.cloud.billing.budgets.v1beta1P\x01ZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgetsb\x06proto3'
     ),
     dependencies=[
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
@@ -199,7 +199,7 @@ _BUDGET = _descriptor.Descriptor(
             containing_type=None,
             is_extension=False,
             extension_scope=None,
-            serialized_options=_b("\340A\002"),
+            serialized_options=_b("\340A\001"),
             file=DESCRIPTOR,
         ),
         _descriptor.FieldDescriptor(
@@ -567,13 +567,11 @@ Budget = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_BUDGET,
         __module__="google.cloud.billing.budgets_v1beta1.proto.budget_model_pb2",
-        __doc__="""A budget is a plan that describes what you expect to spend
-  on Cloud projects, plus the rules to execute as spend is tracked against
-  that plan, (for example, send an alert when 90% of the target spend is
+        __doc__="""A budget is a plan that describes what you expect to spend on Cloud
+  projects, plus the rules to execute as spend is tracked against that
+  plan, (for example, send an alert when 90% of the target spend is
   met). Currently all plans are monthly budgets so the usage period(s)
   tracked are implied (calendar months of usage back-to-back).
-  
-  
   Attributes:
       name:
           Output only. Resource name of the budget. The resource name
@@ -587,7 +585,7 @@ Budget = _reflection.GeneratedProtocolMessageType(
       amount:
           Required. Budgeted amount.
       threshold_rules:
-          Required. Rules that trigger alerts (notifications of
+          Optional. Rules that trigger alerts (notifications of
           thresholds being crossed) when spend exceeds the specified
           percentages of the budget.
       all_updates_rule:
@@ -610,8 +608,6 @@ BudgetAmount = _reflection.GeneratedProtocolMessageType(
         DESCRIPTOR=_BUDGETAMOUNT,
         __module__="google.cloud.billing.budgets_v1beta1.proto.budget_model_pb2",
         __doc__="""The budgeted amount for each usage period.
-  
-  
   Attributes:
       budget_amount:
           Specification for what amount to use as the budget.
@@ -634,13 +630,11 @@ LastPeriodAmount = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_LASTPERIODAMOUNT,
         __module__="google.cloud.billing.budgets_v1beta1.proto.budget_model_pb2",
-        __doc__="""Describes a budget amount targeted to last period's spend.
-  At this time, the amount is automatically 100% of last period's spend;
-  that is, there are no other options yet. Future configuration will be
+        __doc__="""Describes a budget amount targeted to last period's spend. At this
+  time, the amount is automatically 100% of last period's spend; that
+  is, there are no other options yet. Future configuration will be
   described here (for example, configuring a percentage of last period's
-  spend).
-  
-  """,
+  spend).""",
         # @@protoc_insertion_point(class_scope:google.cloud.billing.budgets.v1beta1.LastPeriodAmount)
     ),
 )
@@ -652,15 +646,13 @@ ThresholdRule = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_THRESHOLDRULE,
         __module__="google.cloud.billing.budgets_v1beta1.proto.budget_model_pb2",
-        __doc__="""ThresholdRule contains a definition of a threshold which
-  triggers an alert (a notification of a threshold being crossed) to be
-  sent when spend goes above the specified amount. Alerts are
-  automatically e-mailed to users with the Billing Account Administrator
-  role or the Billing Account User role. The thresholds here have no
-  effect on notifications sent to anything configured under
+        __doc__="""ThresholdRule contains a definition of a threshold which triggers an
+  alert (a notification of a threshold being crossed) to be sent when
+  spend goes above the specified amount. Alerts are automatically
+  e-mailed to users with the Billing Account Administrator role or the
+  Billing Account User role. The thresholds here have no effect on
+  notifications sent to anything configured under
   ``Budget.all_updates_rule``.
-  
-  
   Attributes:
       threshold_percent:
           Required. Send an alert when this threshold is exceeded. This
@@ -682,11 +674,9 @@ AllUpdatesRule = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_ALLUPDATESRULE,
         __module__="google.cloud.billing.budgets_v1beta1.proto.budget_model_pb2",
-        __doc__="""AllUpdatesRule defines notifications that are sent on
-  every update to the billing account's spend, regardless of the
-  thresholds defined using threshold rules.
-  
-  
+        __doc__="""AllUpdatesRule defines notifications that are sent on every update to
+  the billing account's spend, regardless of the thresholds defined
+  using threshold rules.
   Attributes:
       pubsub_topic:
           Required. The name of the Cloud Pub/Sub topic where budget
@@ -718,18 +708,15 @@ Filter = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_FILTER,
         __module__="google.cloud.billing.budgets_v1beta1.proto.budget_model_pb2",
-        __doc__="""A filter for a budget, limiting the scope of the cost to
-  calculate.
-  
-  
+        __doc__="""A filter for a budget, limiting the scope of the cost to calculate.
   Attributes:
       projects:
           Optional. A set of projects of the form
-          ``projects/{project_id}``, specifying that usage from only
-          this set of projects should be included in the budget. If
-          omitted, the report will include all usage for the billing
-          account, regardless of which project the usage occurred on.
-          Only zero or one project can be specified currently.
+          ``projects/{project}``, specifying that usage from only this
+          set of projects should be included in the budget. If omitted,
+          the report will include all usage for the billing account,
+          regardless of which project the usage occurred on. Only zero
+          or one project can be specified currently.
       credit_types_treatment:
           Optional. If not set, default behavior is
           ``INCLUDE_ALL_CREDITS``.
