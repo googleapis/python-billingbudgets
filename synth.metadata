@@ -1,17 +1,10 @@
 {
   "sources": [
     {
-      "generator": {
-        "name": "artman",
-        "version": "2.0.0",
-        "dockerImage": "googleapis/artman@sha256:b3b47805231a305d0f40c4bf069df20f6a2635574e6d4259fac651d3f9f6e098"
-      }
-    },
-    {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-billingbudgets",
-        "sha": "b2a213ec498e49c764466659728911816f534b65"
+        "remote": "https://github.com/googleapis/python-billingbudgets.git",
+        "sha": "c74cb97b9f1d95f51cdbaca1c20c85ecb92d0d96"
       }
     },
     {
@@ -34,11 +27,10 @@
     {
       "client": {
         "source": "googleapis",
-        "apiName": "billingbudgets",
+        "apiName": "billing_budgets",
         "apiVersion": "v1beta1",
         "language": "python",
-        "generator": "gapic",
-        "config": "google/cloud/billing/budgets/artman_billingbudgets_v1beta1.yaml"
+        "generator": "bazel"
       }
     }
   ]

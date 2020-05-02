@@ -236,8 +236,9 @@ class BudgetServiceClient(object):
             >>> response = client.create_budget(parent, budget)
 
         Args:
-            parent (str): Required. The name of the billing account to create the budget in.
-                Values are of the form ``billingAccounts/{billingAccountId}``.
+            parent (str): If not empty, indicates that there may be more budgets that match
+                the request; this value should be passed in a new
+                ``ListBudgetsRequest``.
             budget (Union[dict, ~google.cloud.billing_budgets_v1beta1.types.Budget]): Required. Budget to create.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -301,6 +302,10 @@ class BudgetServiceClient(object):
         """
         Updates a budget and returns the updated budget.
 
+        WARNING: There are some fields exposed on the Google Cloud Console that
+        aren’t available on this API. Budget fields that are not exposed in
+        this API will not be changed by this method.
+
         Example:
             >>> from google.cloud import billing_budgets_v1beta1
             >>>
@@ -317,12 +322,13 @@ class BudgetServiceClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.billing_budgets_v1beta1.types.Budget`
-            update_mask (Union[dict, ~google.cloud.billing_budgets_v1beta1.types.FieldMask]): Optional. Indicates which fields in the provided budget to update.
-                Read-only fields (such as ``name``) cannot be changed. If this is not
-                provided, then only fields with non-default values from the request are
-                updated. See
-                https://developers.google.com/protocol-buffers/docs/proto3#default for
-                more details about default values.
+            update_mask (Union[dict, ~google.cloud.billing_budgets_v1beta1.types.FieldMask]): The name of the request field whose value is mapped to the HTTP
+                request body, or ``*`` for mapping all request fields not captured by
+                the path pattern to the HTTP body, or omitted for not having any HTTP
+                request body.
+
+                NOTE: the referred field must be present at the top-level of the request
+                message type.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.billing_budgets_v1beta1.types.FieldMask`
@@ -386,6 +392,11 @@ class BudgetServiceClient(object):
         """
         Returns a budget.
 
+        WARNING: There are some fields exposed on the Google Cloud Console that
+        aren’t available on this API. When reading from the API, you will not
+        see these fields in the return value, though they may have been set
+        in the Cloud Console.
+
         Example:
             >>> from google.cloud import billing_budgets_v1beta1
             >>>
@@ -396,8 +407,17 @@ class BudgetServiceClient(object):
             >>> response = client.get_budget(name)
 
         Args:
-            name (str): Required. Name of budget to get. Values are of the form
-                ``billingAccounts/{billingAccountId}/budgets/{budgetId}``.
+            name (str): The jstype option determines the JavaScript type used for values of
+                the field. The option is permitted only for 64 bit integral and fixed
+                types (int64, uint64, sint64, fixed64, sfixed64). A field with jstype
+                JS_STRING is represented as JavaScript string, which avoids loss of
+                precision that can happen when a large value is converted to a floating
+                point JavaScript. Specifying JS_NUMBER for the jstype causes the
+                generated JavaScript code to use the JavaScript "number" type. The
+                behavior of the default option JS_NORMAL is implementation dependent.
+
+                This option is an enum to permit additional types to be added, e.g.
+                goog.math.Integer.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -457,6 +477,11 @@ class BudgetServiceClient(object):
         """
         Returns a list of budgets for a billing account.
 
+        WARNING: There are some fields exposed on the Google Cloud Console that
+        aren’t available on this API. When reading from the API, you will not
+        see these fields in the return value, though they may have been set
+        in the Cloud Console.
+
         Example:
             >>> from google.cloud import billing_budgets_v1beta1
             >>>
@@ -479,8 +504,24 @@ class BudgetServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. Name of billing account to list budgets under. Values are of
-                the form ``billingAccounts/{billingAccountId}``.
+            parent (str): Optional. The historical or future-looking state of the resource
+                pattern.
+
+                Example:
+
+                ::
+
+                    // The InspectTemplate message originally only supported resource
+                    // names with organization, and project was added later.
+                    message InspectTemplate {
+                      option (google.api.resource) = {
+                        type: "dlp.googleapis.com/InspectTemplate"
+                        pattern:
+                        "organizations/{organization}/inspectTemplates/{inspect_template}"
+                        pattern: "projects/{project}/inspectTemplates/{inspect_template}"
+                        history: ORIGINALLY_SINGLE_PATTERN
+                      };
+                    }
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -570,8 +611,8 @@ class BudgetServiceClient(object):
             >>> client.delete_budget(name)
 
         Args:
-            name (str): Required. Name of the budget to delete. Values are of the form
-                ``billingAccounts/{billingAccountId}/budgets/{budgetId}``.
+            name (str): Optional. The type of basis used to determine if spend has passed
+                the threshold. Behavior defaults to CURRENT_SPEND if not set.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
