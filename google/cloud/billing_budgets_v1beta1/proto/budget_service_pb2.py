@@ -28,6 +28,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.billing.budgets.v1beta1",
     syntax="proto3",
     serialized_options=b"\n(com.google.cloud.billing.budgets.v1beta1P\001ZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgets",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n?google/cloud/billing_budgets_v1beta1/proto/budget_service.proto\x12$google.cloud.billing.budgets.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a=google/cloud/billing_budgets_v1beta1/proto/budget_model.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto"\x96\x01\n\x13\x43reateBudgetRequest\x12<\n\x06parent\x18\x01 \x01(\tB,\xe0\x41\x02\xfa\x41&\x12$billingbudgets.googleapis.com/Budget\x12\x41\n\x06\x62udget\x18\x02 \x01(\x0b\x32,.google.cloud.billing.budgets.v1beta1.BudgetB\x03\xe0\x41\x02"\x8e\x01\n\x13UpdateBudgetRequest\x12\x41\n\x06\x62udget\x18\x01 \x01(\x0b\x32,.google.cloud.billing.budgets.v1beta1.BudgetB\x03\xe0\x41\x02\x12\x34\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x03\xe0\x41\x01"N\n\x10GetBudgetRequest\x12:\n\x04name\x18\x01 \x01(\tB,\xe0\x41\x02\xfa\x41&\n$billingbudgets.googleapis.com/Budget"\x83\x01\n\x12ListBudgetsRequest\x12<\n\x06parent\x18\x01 \x01(\tB,\xe0\x41\x02\xfa\x41&\x12$billingbudgets.googleapis.com/Budget\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01"m\n\x13ListBudgetsResponse\x12=\n\x07\x62udgets\x18\x01 \x03(\x0b\x32,.google.cloud.billing.budgets.v1beta1.Budget\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t"Q\n\x13\x44\x65leteBudgetRequest\x12:\n\x04name\x18\x01 \x01(\tB,\xe0\x41\x02\xfa\x41&\n$billingbudgets.googleapis.com/Budget2\xc9\x07\n\rBudgetService\x12\xaf\x01\n\x0c\x43reateBudget\x12\x39.google.cloud.billing.budgets.v1beta1.CreateBudgetRequest\x1a,.google.cloud.billing.budgets.v1beta1.Budget"6\x82\xd3\xe4\x93\x02\x30"+/v1beta1/{parent=billingAccounts/*}/budgets:\x01*\x12\xb6\x01\n\x0cUpdateBudget\x12\x39.google.cloud.billing.budgets.v1beta1.UpdateBudgetRequest\x1a,.google.cloud.billing.budgets.v1beta1.Budget"=\x82\xd3\xe4\x93\x02\x37\x32\x32/v1beta1/{budget.name=billingAccounts/*/budgets/*}:\x01*\x12\xa6\x01\n\tGetBudget\x12\x36.google.cloud.billing.budgets.v1beta1.GetBudgetRequest\x1a,.google.cloud.billing.budgets.v1beta1.Budget"3\x82\xd3\xe4\x93\x02-\x12+/v1beta1/{name=billingAccounts/*/budgets/*}\x12\xb7\x01\n\x0bListBudgets\x12\x38.google.cloud.billing.budgets.v1beta1.ListBudgetsRequest\x1a\x39.google.cloud.billing.budgets.v1beta1.ListBudgetsResponse"3\x82\xd3\xe4\x93\x02-\x12+/v1beta1/{parent=billingAccounts/*}/budgets\x12\x96\x01\n\x0c\x44\x65leteBudget\x12\x39.google.cloud.billing.budgets.v1beta1.DeleteBudgetRequest\x1a\x16.google.protobuf.Empty"3\x82\xd3\xe4\x93\x02-*+/v1beta1/{name=billingAccounts/*/budgets/*}\x1aQ\xca\x41\x1d\x62illingbudgets.googleapis.com\xd2\x41.https://www.googleapis.com/auth/cloud-platformBy\n(com.google.cloud.billing.budgets.v1beta1P\x01ZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgetsb\x06proto3',
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
@@ -47,6 +48,7 @@ _CREATEBUDGETREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -65,6 +67,7 @@ _CREATEBUDGETREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A&\022$billingbudgets.googleapis.com/Budget",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="budget",
@@ -83,6 +86,7 @@ _CREATEBUDGETREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -104,6 +108,7 @@ _UPDATEBUDGETREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="budget",
@@ -122,6 +127,7 @@ _UPDATEBUDGETREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="update_mask",
@@ -140,6 +146,7 @@ _UPDATEBUDGETREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -161,6 +168,7 @@ _GETBUDGETREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -179,6 +187,7 @@ _GETBUDGETREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A&\n$billingbudgets.googleapis.com/Budget",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -200,6 +209,7 @@ _LISTBUDGETSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -218,6 +228,7 @@ _LISTBUDGETSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A&\022$billingbudgets.googleapis.com/Budget",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -236,6 +247,7 @@ _LISTBUDGETSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -254,6 +266,7 @@ _LISTBUDGETSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -275,6 +288,7 @@ _LISTBUDGETSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="budgets",
@@ -293,6 +307,7 @@ _LISTBUDGETSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -311,6 +326,7 @@ _LISTBUDGETSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -332,6 +348,7 @@ _DELETEBUDGETREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -350,6 +367,7 @@ _DELETEBUDGETREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A&\n$billingbudgets.googleapis.com/Budget",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -532,6 +550,7 @@ _BUDGETSERVICE = _descriptor.ServiceDescriptor(
     file=DESCRIPTOR,
     index=0,
     serialized_options=b"\312A\035billingbudgets.googleapis.com\322A.https://www.googleapis.com/auth/cloud-platform",
+    create_key=_descriptor._internal_create_key,
     serialized_start=1053,
     serialized_end=2022,
     methods=[
@@ -543,6 +562,7 @@ _BUDGETSERVICE = _descriptor.ServiceDescriptor(
             input_type=_CREATEBUDGETREQUEST,
             output_type=google_dot_cloud_dot_billing__budgets__v1beta1_dot_proto_dot_budget__model__pb2._BUDGET,
             serialized_options=b'\202\323\344\223\0020"+/v1beta1/{parent=billingAccounts/*}/budgets:\001*',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="UpdateBudget",
@@ -552,6 +572,7 @@ _BUDGETSERVICE = _descriptor.ServiceDescriptor(
             input_type=_UPDATEBUDGETREQUEST,
             output_type=google_dot_cloud_dot_billing__budgets__v1beta1_dot_proto_dot_budget__model__pb2._BUDGET,
             serialized_options=b"\202\323\344\223\002722/v1beta1/{budget.name=billingAccounts/*/budgets/*}:\001*",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetBudget",
@@ -561,6 +582,7 @@ _BUDGETSERVICE = _descriptor.ServiceDescriptor(
             input_type=_GETBUDGETREQUEST,
             output_type=google_dot_cloud_dot_billing__budgets__v1beta1_dot_proto_dot_budget__model__pb2._BUDGET,
             serialized_options=b"\202\323\344\223\002-\022+/v1beta1/{name=billingAccounts/*/budgets/*}",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="ListBudgets",
@@ -570,6 +592,7 @@ _BUDGETSERVICE = _descriptor.ServiceDescriptor(
             input_type=_LISTBUDGETSREQUEST,
             output_type=_LISTBUDGETSRESPONSE,
             serialized_options=b"\202\323\344\223\002-\022+/v1beta1/{parent=billingAccounts/*}/budgets",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="DeleteBudget",
@@ -579,6 +602,7 @@ _BUDGETSERVICE = _descriptor.ServiceDescriptor(
             input_type=_DELETEBUDGETREQUEST,
             output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
             serialized_options=b"\202\323\344\223\002-*+/v1beta1/{name=billingAccounts/*/budgets/*}",
+            create_key=_descriptor._internal_create_key,
         ),
     ],
 )
