@@ -625,10 +625,11 @@ LastPeriodAmount = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LASTPERIODAMOUNT,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_model_pb2",
-        "__doc__": """Describes a budget amount targeted to last period’s spend. At this time,
-  the amount is automatically 100% of last period’s spend; that is, there
-  are no other options yet. Future configuration will be described here
-  (for example, configuring a percentage of last period’s spend).
+        "__doc__": """Describes a budget amount targeted to last period’s spend.
+  At this time, the amount is automatically 100% of last period’s spend;
+  that is, there are no other options yet. Future configuration will be
+  described here (for example, configuring a percentage of last period’s
+  spend).
   
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.billing.budgets.v1beta1.LastPeriodAmount)
@@ -708,8 +709,7 @@ Filter = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _FILTER,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_model_pb2",
-        "__doc__": """A filter for a budget, limiting the scope of the cost to
-  calculate.
+        "__doc__": """A filter for a budget, limiting the scope of the cost to calculate.
   
   
   Attributes:
