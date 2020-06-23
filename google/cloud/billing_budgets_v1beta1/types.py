@@ -28,9 +28,17 @@ from google.protobuf import struct_pb2
 from google.type import money_pb2
 
 
-_shared_modules = [empty_pb2, field_mask_pb2, struct_pb2, money_pb2]
+_shared_modules = [
+    empty_pb2,
+    field_mask_pb2,
+    struct_pb2,
+    money_pb2,
+]
 
-_local_modules = [budget_model_pb2, budget_service_pb2]
+_local_modules = [
+    budget_model_pb2,
+    budget_service_pb2,
+]
 
 names = []
 

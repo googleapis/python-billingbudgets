@@ -38,4 +38,8 @@ class BudgetServiceClient(budget_service_client.BudgetServiceClient):
     enums = enums
 
 
-__all__ = ("enums", "types", "BudgetServiceClient")
+__all__ = (
+    "enums",
+    "types",
+    "BudgetServiceClient",
+)

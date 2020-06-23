@@ -188,7 +188,7 @@ _GETBUDGETREQUEST = _descriptor.Descriptor(
             serialized_options=b"\340A\002\372A&\n$billingbudgets.googleapis.com/Budget",
             file=DESCRIPTOR,
             create_key=_descriptor._internal_create_key,
-        )
+        ),
     ],
     extensions=[],
     nested_types=[],
@@ -368,7 +368,7 @@ _DELETEBUDGETREQUEST = _descriptor.Descriptor(
             serialized_options=b"\340A\002\372A&\n$billingbudgets.googleapis.com/Budget",
             file=DESCRIPTOR,
             create_key=_descriptor._internal_create_key,
-        )
+        ),
     ],
     extensions=[],
     nested_types=[],
