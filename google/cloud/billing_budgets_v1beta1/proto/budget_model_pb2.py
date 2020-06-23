@@ -23,6 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.billing.budgets.v1beta1",
     syntax="proto3",
     serialized_options=b"\n(com.google.cloud.billing.budgets.v1beta1P\001ZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgets",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n=google/cloud/billing_budgets_v1beta1/proto/budget_model.proto\x12$google.cloud.billing.budgets.v1beta1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x17google/type/money.proto"\xde\x03\n\x06\x42udget\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12H\n\rbudget_filter\x18\x03 \x01(\x0b\x32,.google.cloud.billing.budgets.v1beta1.FilterB\x03\xe0\x41\x01\x12G\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x32.google.cloud.billing.budgets.v1beta1.BudgetAmountB\x03\xe0\x41\x02\x12Q\n\x0fthreshold_rules\x18\x05 \x03(\x0b\x32\x33.google.cloud.billing.budgets.v1beta1.ThresholdRuleB\x03\xe0\x41\x01\x12S\n\x10\x61ll_updates_rule\x18\x06 \x01(\x0b\x32\x34.google.cloud.billing.budgets.v1beta1.AllUpdatesRuleB\x03\xe0\x41\x01\x12\x11\n\x04\x65tag\x18\x07 \x01(\tB\x03\xe0\x41\x01:]\xea\x41Z\n$billingbudgets.googleapis.com/Budget\x12\x32\x62illingAccounts/{billing_account}/budgets/{budget}"\xa5\x01\n\x0c\x42udgetAmount\x12.\n\x10specified_amount\x18\x01 \x01(\x0b\x32\x12.google.type.MoneyH\x00\x12T\n\x12last_period_amount\x18\x02 \x01(\x0b\x32\x36.google.cloud.billing.budgets.v1beta1.LastPeriodAmountH\x00\x42\x0f\n\rbudget_amount"\x12\n\x10LastPeriodAmount"\xcd\x01\n\rThresholdRule\x12\x1e\n\x11threshold_percent\x18\x01 \x01(\x01\x42\x03\xe0\x41\x02\x12S\n\x0bspend_basis\x18\x02 \x01(\x0e\x32\x39.google.cloud.billing.budgets.v1beta1.ThresholdRule.BasisB\x03\xe0\x41\x01"G\n\x05\x42\x61sis\x12\x15\n\x11\x42\x41SIS_UNSPECIFIED\x10\x00\x12\x11\n\rCURRENT_SPEND\x10\x01\x12\x14\n\x10\x46ORECASTED_SPEND\x10\x02"H\n\x0e\x41llUpdatesRule\x12\x19\n\x0cpubsub_topic\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12\x1b\n\x0eschema_version\x18\x02 \x01(\tB\x03\xe0\x41\x02"\xc4\x03\n\x06\x46ilter\x12\x15\n\x08projects\x18\x01 \x03(\tB\x03\xe0\x41\x01\x12\x66\n\x16\x63redit_types_treatment\x18\x04 \x01(\x0e\x32\x41.google.cloud.billing.budgets.v1beta1.Filter.CreditTypesTreatmentB\x03\xe0\x41\x01\x12\x15\n\x08services\x18\x03 \x03(\tB\x03\xe0\x41\x01\x12\x18\n\x0bsubaccounts\x18\x05 \x03(\tB\x03\xe0\x41\x01\x12M\n\x06labels\x18\x06 \x03(\x0b\x32\x38.google.cloud.billing.budgets.v1beta1.Filter.LabelsEntryB\x03\xe0\x41\x01\x1aI\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12)\n\x05value\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.ListValue:\x02\x38\x01"p\n\x14\x43reditTypesTreatment\x12&\n"CREDIT_TYPES_TREATMENT_UNSPECIFIED\x10\x00\x12\x17\n\x13INCLUDE_ALL_CREDITS\x10\x01\x12\x17\n\x13\x45XCLUDE_ALL_CREDITS\x10\x02\x42y\n(com.google.cloud.billing.budgets.v1beta1P\x01ZKgoogle.golang.org/genproto/googleapis/cloud/billing/budgets/v1beta1;budgetsb\x06proto3',
     dependencies=[
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
@@ -38,6 +39,7 @@ _THRESHOLDRULE_BASIS = _descriptor.EnumDescriptor(
     full_name="google.cloud.billing.budgets.v1beta1.ThresholdRule.Basis",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="BASIS_UNSPECIFIED",
@@ -45,9 +47,15 @@ _THRESHOLDRULE_BASIS = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="CURRENT_SPEND", index=1, number=1, serialized_options=None, type=None
+            name="CURRENT_SPEND",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="FORECASTED_SPEND",
@@ -55,6 +63,7 @@ _THRESHOLDRULE_BASIS = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -69,6 +78,7 @@ _FILTER_CREDITTYPESTREATMENT = _descriptor.EnumDescriptor(
     full_name="google.cloud.billing.budgets.v1beta1.Filter.CreditTypesTreatment",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CREDIT_TYPES_TREATMENT_UNSPECIFIED",
@@ -76,6 +86,7 @@ _FILTER_CREDITTYPESTREATMENT = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="INCLUDE_ALL_CREDITS",
@@ -83,6 +94,7 @@ _FILTER_CREDITTYPESTREATMENT = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="EXCLUDE_ALL_CREDITS",
@@ -90,6 +102,7 @@ _FILTER_CREDITTYPESTREATMENT = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -106,6 +119,7 @@ _BUDGET = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -124,6 +138,7 @@ _BUDGET = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="display_name",
@@ -142,6 +157,7 @@ _BUDGET = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="budget_filter",
@@ -160,6 +176,7 @@ _BUDGET = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="amount",
@@ -178,6 +195,7 @@ _BUDGET = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="threshold_rules",
@@ -196,6 +214,7 @@ _BUDGET = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="all_updates_rule",
@@ -214,6 +233,7 @@ _BUDGET = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="etag",
@@ -232,6 +252,7 @@ _BUDGET = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -253,6 +274,7 @@ _BUDGETAMOUNT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="specified_amount",
@@ -271,6 +293,7 @@ _BUDGETAMOUNT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="last_period_amount",
@@ -289,6 +312,7 @@ _BUDGETAMOUNT = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -304,6 +328,7 @@ _BUDGETAMOUNT = _descriptor.Descriptor(
             full_name="google.cloud.billing.budgets.v1beta1.BudgetAmount.budget_amount",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -318,6 +343,7 @@ _LASTPERIODAMOUNT = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[],
     extensions=[],
     nested_types=[],
@@ -338,6 +364,7 @@ _THRESHOLDRULE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="threshold_percent",
@@ -356,6 +383,7 @@ _THRESHOLDRULE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="spend_basis",
@@ -374,6 +402,7 @@ _THRESHOLDRULE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -395,6 +424,7 @@ _ALLUPDATESRULE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="pubsub_topic",
@@ -413,6 +443,7 @@ _ALLUPDATESRULE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="schema_version",
@@ -431,6 +462,7 @@ _ALLUPDATESRULE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -452,6 +484,7 @@ _FILTER_LABELSENTRY = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="key",
@@ -470,6 +503,7 @@ _FILTER_LABELSENTRY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="value",
@@ -488,6 +522,7 @@ _FILTER_LABELSENTRY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -508,6 +543,7 @@ _FILTER = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="projects",
@@ -526,6 +562,7 @@ _FILTER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="credit_types_treatment",
@@ -544,6 +581,7 @@ _FILTER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="services",
@@ -562,6 +600,7 @@ _FILTER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="subaccounts",
@@ -580,6 +619,7 @@ _FILTER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="labels",
@@ -598,6 +638,7 @@ _FILTER = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
