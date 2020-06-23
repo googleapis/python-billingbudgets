@@ -703,6 +703,7 @@ Budget = _reflection.GeneratedProtocolMessageType(
   plan, (for example, send an alert when 90% of the target spend is
   met). Currently all plans are monthly budgets so the usage period(s)
   tracked are implied (calendar months of usage back-to-back).
+  
   Attributes:
       name:
           Output only. Resource name of the budget. The resource name
@@ -739,6 +740,7 @@ BudgetAmount = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _BUDGETAMOUNT,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_model_pb2",
         "__doc__": """The budgeted amount for each usage period.
+  
   Attributes:
       budget_amount:
           Specification for what amount to use as the budget.
@@ -784,6 +786,7 @@ ThresholdRule = _reflection.GeneratedProtocolMessageType(
   Billing Account User role. The thresholds here have no effect on
   notifications sent to anything configured under
   ``Budget.all_updates_rule``.
+  
   Attributes:
       threshold_percent:
           Required. Send an alert when this threshold is exceeded. This
@@ -808,6 +811,7 @@ AllUpdatesRule = _reflection.GeneratedProtocolMessageType(
         "__doc__": """AllUpdatesRule defines notifications that are sent on every update to
   the billing account’s spend, regardless of the thresholds defined
   using threshold rules.
+  
   Attributes:
       pubsub_topic:
           Required. The name of the Cloud Pub/Sub topic where budget
@@ -849,6 +853,7 @@ Filter = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _FILTER,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_model_pb2",
         "__doc__": """A filter for a budget, limiting the scope of the cost to calculate.
+  
   Attributes:
       projects:
           Optional. A set of projects of the form

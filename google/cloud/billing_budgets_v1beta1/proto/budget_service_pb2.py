@@ -415,6 +415,7 @@ CreateBudgetRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CREATEBUDGETREQUEST,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_service_pb2",
         "__doc__": """Request for CreateBudget
+  
   Attributes:
       parent:
           Required. The name of the billing account to create the budget
@@ -435,6 +436,7 @@ UpdateBudgetRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _UPDATEBUDGETREQUEST,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_service_pb2",
         "__doc__": """Request for UpdateBudget
+  
   Attributes:
       budget:
           Required. The updated budget object. The budget to update is
@@ -460,6 +462,7 @@ GetBudgetRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETBUDGETREQUEST,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_service_pb2",
         "__doc__": """Request for GetBudget
+  
   Attributes:
       name:
           Required. Name of budget to get. Values are of the form
@@ -477,6 +480,7 @@ ListBudgetsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTBUDGETSREQUEST,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_service_pb2",
         "__doc__": """Request for ListBudgets
+  
   Attributes:
       parent:
           Required. Name of billing account to list budgets under.
@@ -502,6 +506,7 @@ ListBudgetsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTBUDGETSRESPONSE,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_service_pb2",
         "__doc__": """Response for ListBudgets
+  
   Attributes:
       budgets:
           List of the budgets owned by the requested billing account.
@@ -522,6 +527,7 @@ DeleteBudgetRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DELETEBUDGETREQUEST,
         "__module__": "google.cloud.billing_budgets_v1beta1.proto.budget_service_pb2",
         "__doc__": """Request for DeleteBudget
+  
   Attributes:
       name:
           Required. Name of the budget to delete. Values are of the form
