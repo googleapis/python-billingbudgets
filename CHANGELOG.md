@@ -1,4 +1,11 @@
 # Changelog
+### [0.4.1](https://www.github.com/googleapis/python-billingbudgets/compare/v0.4.0...v0.4.1) (2020-06-30)
+
+
+### Documentation
+
+* add multiprocessing note ([#33](https://www.github.com/googleapis/python-billingbudgets/issues/33)) ([2fc2649](https://www.github.com/googleapis/python-billingbudgets/commit/2fc26490d54ed4bc5c2c074188533593fa863bb5))
+
 ## [0.4.0](https://www.github.com/googleapis/python-billingbudgets/compare/v0.3.0...v0.4.0) (2020-05-18)
 
 
