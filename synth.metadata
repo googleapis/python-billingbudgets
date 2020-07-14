@@ -4,7 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-billingbudgets.git",
-        "sha": "d2165d55e63ebb803bf18b9597e17bee8792f8a1"
+        "sha": "3f657f2a08ec1fcc9876a4956824eaea47bb2140"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "3474dc892349674efda09d74b3a574765d996188",
+        "internalRef": "321098618"
       }
     },
     {
