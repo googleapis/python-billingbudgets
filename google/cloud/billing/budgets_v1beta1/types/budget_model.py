@@ -63,8 +63,8 @@ class Budget(proto.Message):
             spend exceeds the specified percentages of the
             budget.
         all_updates_rule (~.budget_model.AllUpdatesRule):
-            Optional. Rules to apply to all updates to the actual spend,
-            regardless of the thresholds set in ``threshold_rules``.
+            Optional. Rules to apply to notifications
+            sent based on budget spend and thresholds.
         etag (str):
             Optional. Etag to validate that the object is
             unchanged for a read-modify-write operation.
@@ -103,10 +103,12 @@ class BudgetAmount(proto.Message):
             budget for the present period.
     """
 
-    specified_amount = proto.Field(proto.MESSAGE, number=1, message=money.Money,)
+    specified_amount = proto.Field(
+        proto.MESSAGE, number=1, oneof="budget_amount", message=money.Money,
+    )
 
     last_period_amount = proto.Field(
-        proto.MESSAGE, number=2, message="LastPeriodAmount",
+        proto.MESSAGE, number=2, oneof="budget_amount", message="LastPeriodAmount",
     )
 
 
@@ -153,9 +155,8 @@ class ThresholdRule(proto.Message):
 
 
 class AllUpdatesRule(proto.Message):
-    r"""AllUpdatesRule defines notifications that are sent on every
-    update to the billing account's spend, regardless of the
-    thresholds defined using threshold rules.
+    r"""AllUpdatesRule defines notifications that are sent based on
+    budget spend and thresholds.
 
     Attributes:
         pubsub_topic (str):
@@ -172,14 +173,25 @@ class AllUpdatesRule(proto.Message):
             https://cloud.google.com/pubsub/docs/access-control for more
             details on Pub/Sub roles and permissions.
         schema_version (str):
-            Required. The schema version of the notification. Only "1.0"
-            is accepted. It represents the JSON schema as defined in
+            Required. The schema version of the notification sent to
+            ``pubsub_topic``. Only "1.0" is accepted. It represents the
+            JSON schema as defined in
             https://cloud.google.com/billing/docs/how-to/budgets#notification_format
+        monitoring_notification_channels (Sequence[str]):
+            Optional. Targets to send notifications to when a threshold
+            is exceeded. This is in addition to default recipients who
+            have billing account roles. The value is the full REST
+            resource name of a monitoring notification channel with the
+            form
+            ``projects/{project_id}/notificationChannels/{channel_id}``.
+            A maximum of 5 channels are allowed.
     """
 
     pubsub_topic = proto.Field(proto.STRING, number=1)
 
     schema_version = proto.Field(proto.STRING, number=2)
+
+    monitoring_notification_channels = proto.RepeatedField(proto.STRING, number=3)
 
 
 class Filter(proto.Message):
@@ -208,17 +220,18 @@ class Filter(proto.Message):
             Optional. A set of subaccounts of the form
             ``billingAccounts/{account_id}``, specifying that usage from
             only this set of subaccounts should be included in the
-            budget. If a subaccount is set to the name of the master
-            account, usage from the master account will be included. If
-            omitted, the report will include usage from the master
+            budget. If a subaccount is set to the name of the reseller
+            account, usage from the reseller account will be included.
+            If omitted, the report will include usage from the reseller
             account and all subaccounts, if they exist.
         labels (Sequence[~.budget_model.Filter.LabelsEntry]):
             Optional. A single label and value pair
             specifying that usage from only this set of
             labeled resources should be included in the
-            budget. Multiple entries or multiple values per
-            entry are not allowed. If omitted, the report
-            will include all labeled and unlabeled usage.
+            budget. Currently, multiple entries or multiple
+            values per entry are not allowed. If omitted,
+            the report will include all labeled and
+            unlabeled usage.
     """
 
     class CreditTypesTreatment(proto.Enum):

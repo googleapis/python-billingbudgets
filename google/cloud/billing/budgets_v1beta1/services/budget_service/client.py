@@ -232,6 +232,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
                 scopes=client_options.scopes,
                 api_mtls_endpoint=client_options.api_endpoint,
                 client_cert_source=client_options.client_cert_source,
+                quota_project_id=client_options.quota_project_id,
             )
 
     def create_budget(
@@ -272,15 +273,16 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = budget_service.CreateBudgetRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a budget_service.CreateBudgetRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, budget_service.CreateBudgetRequest):
+            request = budget_service.CreateBudgetRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_budget,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_budget]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -333,15 +335,16 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = budget_service.UpdateBudgetRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a budget_service.UpdateBudgetRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, budget_service.UpdateBudgetRequest):
+            request = budget_service.UpdateBudgetRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_budget,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_budget]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -397,13 +400,16 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = budget_service.GetBudgetRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a budget_service.GetBudgetRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, budget_service.GetBudgetRequest):
+            request = budget_service.GetBudgetRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_budget, default_timeout=None, client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_budget]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -452,15 +458,16 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = budget_service.ListBudgetsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a budget_service.ListBudgetsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, budget_service.ListBudgetsRequest):
+            request = budget_service.ListBudgetsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_budgets,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_budgets]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -503,15 +510,16 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = budget_service.DeleteBudgetRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a budget_service.DeleteBudgetRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, budget_service.DeleteBudgetRequest):
+            request = budget_service.DeleteBudgetRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_budget,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_budget]
 
         # Certain fields should be provided within the metadata header;
         # add these here.

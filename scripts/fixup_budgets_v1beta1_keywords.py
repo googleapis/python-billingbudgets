@@ -45,6 +45,7 @@ class budgetsCallTransformer(cst.CSTTransformer):
     'get_budget': ('name', ),
     'list_budgets': ('parent', 'page_size', 'page_token', ),
     'update_budget': ('budget', 'update_mask', ),
+
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
