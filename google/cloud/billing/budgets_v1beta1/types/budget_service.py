@@ -23,14 +23,14 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.billing.budgets.v1beta1",
+    package='google.cloud.billing.budgets.v1beta1',
     manifest={
-        "CreateBudgetRequest",
-        "UpdateBudgetRequest",
-        "GetBudgetRequest",
-        "ListBudgetsRequest",
-        "ListBudgetsResponse",
-        "DeleteBudgetRequest",
+        'CreateBudgetRequest',
+        'UpdateBudgetRequest',
+        'GetBudgetRequest',
+        'ListBudgetsRequest',
+        'ListBudgetsResponse',
+        'DeleteBudgetRequest',
     },
 )
 
@@ -49,7 +49,9 @@ class CreateBudgetRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    budget = proto.Field(proto.MESSAGE, number=2, message=budget_model.Budget,)
+    budget = proto.Field(proto.MESSAGE, number=2,
+        message=budget_model.Budget,
+    )
 
 
 class UpdateBudgetRequest(proto.Message):
@@ -69,9 +71,13 @@ class UpdateBudgetRequest(proto.Message):
             for more details about default values.
     """
 
-    budget = proto.Field(proto.MESSAGE, number=1, message=budget_model.Budget,)
+    budget = proto.Field(proto.MESSAGE, number=1,
+        message=budget_model.Budget,
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class GetBudgetRequest(proto.Message):
@@ -129,7 +135,9 @@ class ListBudgetsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    budgets = proto.RepeatedField(proto.MESSAGE, number=1, message=budget_model.Budget,)
+    budgets = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=budget_model.Budget,
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 

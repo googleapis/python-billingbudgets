@@ -38,15 +38,12 @@ class ListBudgetsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., budget_service.ListBudgetsResponse],
-        request: budget_service.ListBudgetsRequest,
-        response: budget_service.ListBudgetsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., budget_service.ListBudgetsResponse],
+            request: budget_service.ListBudgetsRequest,
+            response: budget_service.ListBudgetsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -80,7 +77,7 @@ class ListBudgetsPager:
             yield from page.budgets
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListBudgetsAsyncPager:
@@ -100,15 +97,12 @@ class ListBudgetsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., Awaitable[budget_service.ListBudgetsResponse]],
-        request: budget_service.ListBudgetsRequest,
-        response: budget_service.ListBudgetsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., Awaitable[budget_service.ListBudgetsResponse]],
+            request: budget_service.ListBudgetsRequest,
+            response: budget_service.ListBudgetsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -146,4 +140,4 @@ class ListBudgetsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)

@@ -32,12 +32,8 @@ from google.api_core import grpc_helpers
 from google.api_core import grpc_helpers_async
 from google.auth import credentials
 from google.auth.exceptions import MutualTLSChannelError
-from google.cloud.billing.budgets_v1beta1.services.budget_service import (
-    BudgetServiceAsyncClient,
-)
-from google.cloud.billing.budgets_v1beta1.services.budget_service import (
-    BudgetServiceClient,
-)
+from google.cloud.billing.budgets_v1beta1.services.budget_service import BudgetServiceAsyncClient
+from google.cloud.billing.budgets_v1beta1.services.budget_service import BudgetServiceClient
 from google.cloud.billing.budgets_v1beta1.services.budget_service import pagers
 from google.cloud.billing.budgets_v1beta1.services.budget_service import transports
 from google.cloud.billing.budgets_v1beta1.types import budget_model
@@ -56,11 +52,7 @@ def client_cert_source_callback():
 # This method modifies the default endpoint so the client can produce a different
 # mtls endpoint for endpoint testing purposes.
 def modify_default_endpoint(client):
-    return (
-        "foo.googleapis.com"
-        if ("localhost" in client.DEFAULT_ENDPOINT)
-        else client.DEFAULT_ENDPOINT
-    )
+    return "foo.googleapis.com" if ("localhost" in client.DEFAULT_ENDPOINT) else client.DEFAULT_ENDPOINT
 
 
 def test__get_default_mtls_endpoint():
@@ -71,35 +63,17 @@ def test__get_default_mtls_endpoint():
     non_googleapi = "api.example.com"
 
     assert BudgetServiceClient._get_default_mtls_endpoint(None) is None
-    assert (
-        BudgetServiceClient._get_default_mtls_endpoint(api_endpoint)
-        == api_mtls_endpoint
-    )
-    assert (
-        BudgetServiceClient._get_default_mtls_endpoint(api_mtls_endpoint)
-        == api_mtls_endpoint
-    )
-    assert (
-        BudgetServiceClient._get_default_mtls_endpoint(sandbox_endpoint)
-        == sandbox_mtls_endpoint
-    )
-    assert (
-        BudgetServiceClient._get_default_mtls_endpoint(sandbox_mtls_endpoint)
-        == sandbox_mtls_endpoint
-    )
-    assert (
-        BudgetServiceClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
-    )
+    assert BudgetServiceClient._get_default_mtls_endpoint(api_endpoint) == api_mtls_endpoint
+    assert BudgetServiceClient._get_default_mtls_endpoint(api_mtls_endpoint) == api_mtls_endpoint
+    assert BudgetServiceClient._get_default_mtls_endpoint(sandbox_endpoint) == sandbox_mtls_endpoint
+    assert BudgetServiceClient._get_default_mtls_endpoint(sandbox_mtls_endpoint) == sandbox_mtls_endpoint
+    assert BudgetServiceClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-@pytest.mark.parametrize(
-    "client_class", [BudgetServiceClient, BudgetServiceAsyncClient]
-)
+@pytest.mark.parametrize("client_class", [BudgetServiceClient, BudgetServiceAsyncClient])
 def test_budget_service_client_from_service_account_file(client_class):
     creds = credentials.AnonymousCredentials()
-    with mock.patch.object(
-        service_account.Credentials, "from_service_account_file"
-    ) as factory:
+    with mock.patch.object(service_account.Credentials, 'from_service_account_file') as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client._transport._credentials == creds
@@ -107,7 +81,7 @@ def test_budget_service_client_from_service_account_file(client_class):
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client._transport._credentials == creds
 
-        assert client._transport._host == "billingbudgets.googleapis.com:443"
+        assert client._transport._host == 'billingbudgets.googleapis.com:443'
 
 
 def test_budget_service_client_get_transport_class():
@@ -118,44 +92,29 @@ def test_budget_service_client_get_transport_class():
     assert transport == transports.BudgetServiceGrpcTransport
 
 
-@pytest.mark.parametrize(
-    "client_class,transport_class,transport_name",
-    [
-        (BudgetServiceClient, transports.BudgetServiceGrpcTransport, "grpc"),
-        (
-            BudgetServiceAsyncClient,
-            transports.BudgetServiceGrpcAsyncIOTransport,
-            "grpc_asyncio",
-        ),
-    ],
-)
-@mock.patch.object(
-    BudgetServiceClient,
-    "DEFAULT_ENDPOINT",
-    modify_default_endpoint(BudgetServiceClient),
-)
-@mock.patch.object(
-    BudgetServiceAsyncClient,
-    "DEFAULT_ENDPOINT",
-    modify_default_endpoint(BudgetServiceAsyncClient),
-)
-def test_budget_service_client_client_options(
-    client_class, transport_class, transport_name
-):
+@pytest.mark.parametrize("client_class,transport_class,transport_name", [
+    (BudgetServiceClient, transports.BudgetServiceGrpcTransport, "grpc"),
+    (BudgetServiceAsyncClient, transports.BudgetServiceGrpcAsyncIOTransport, "grpc_asyncio")
+])
+@mock.patch.object(BudgetServiceClient, "DEFAULT_ENDPOINT", modify_default_endpoint(BudgetServiceClient))
+@mock.patch.object(BudgetServiceAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(BudgetServiceAsyncClient))
+def test_budget_service_client_client_options(client_class, transport_class, transport_name):
     # Check that if channel is provided we won't create a new one.
-    with mock.patch.object(BudgetServiceClient, "get_transport_class") as gtc:
-        transport = transport_class(credentials=credentials.AnonymousCredentials())
+    with mock.patch.object(BudgetServiceClient, 'get_transport_class') as gtc:
+        transport = transport_class(
+            credentials=credentials.AnonymousCredentials()
+        )
         client = client_class(transport=transport)
         gtc.assert_not_called()
 
     # Check that if channel is provided via str we will create a new one.
-    with mock.patch.object(BudgetServiceClient, "get_transport_class") as gtc:
+    with mock.patch.object(BudgetServiceClient, 'get_transport_class') as gtc:
         client = client_class(transport=transport_name)
         gtc.assert_called()
 
     # Check the case api_endpoint is provided.
     options = client_options.ClientOptions(api_endpoint="squid.clam.whelk")
-    with mock.patch.object(transport_class, "__init__") as patched:
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -171,7 +130,7 @@ def test_budget_service_client_client_options(
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
     # "never".
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "never"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
+        with mock.patch.object(transport_class, '__init__') as patched:
             patched.return_value = None
             client = client_class()
             patched.assert_called_once_with(
@@ -187,7 +146,7 @@ def test_budget_service_client_client_options(
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
     # "always".
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "always"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
+        with mock.patch.object(transport_class, '__init__') as patched:
             patched.return_value = None
             client = client_class()
             patched.assert_called_once_with(
@@ -203,10 +162,8 @@ def test_budget_service_client_client_options(
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
     # "auto", and client_cert_source is provided.
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
-        options = client_options.ClientOptions(
-            client_cert_source=client_cert_source_callback
-        )
-        with mock.patch.object(transport_class, "__init__") as patched:
+        options = client_options.ClientOptions(client_cert_source=client_cert_source_callback)
+        with mock.patch.object(transport_class, '__init__') as patched:
             patched.return_value = None
             client = client_class(client_options=options)
             patched.assert_called_once_with(
@@ -217,16 +174,14 @@ def test_budget_service_client_client_options(
                 api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
                 client_cert_source=client_cert_source_callback,
                 quota_project_id=None,
+
             )
 
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
     # "auto", and default_client_cert_source is provided.
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
-            with mock.patch(
-                "google.auth.transport.mtls.has_default_client_cert_source",
-                return_value=True,
-            ):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=True):
                 patched.return_value = None
                 client = client_class()
                 patched.assert_called_once_with(
@@ -242,11 +197,8 @@ def test_budget_service_client_client_options(
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
     # "auto", but client_cert_source and default_client_cert_source are None.
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
-            with mock.patch(
-                "google.auth.transport.mtls.has_default_client_cert_source",
-                return_value=False,
-            ):
+        with mock.patch.object(transport_class, '__init__') as patched:
+            with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=False):
                 patched.return_value = None
                 client = client_class()
                 patched.assert_called_once_with(
@@ -267,7 +219,7 @@ def test_budget_service_client_client_options(
 
     # Check the case quota_project_id is provided
     options = client_options.ClientOptions(quota_project_id="octopus")
-    with mock.patch.object(transport_class, "__init__") as patched:
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -281,23 +233,16 @@ def test_budget_service_client_client_options(
         )
 
 
-@pytest.mark.parametrize(
-    "client_class,transport_class,transport_name",
-    [
-        (BudgetServiceClient, transports.BudgetServiceGrpcTransport, "grpc"),
-        (
-            BudgetServiceAsyncClient,
-            transports.BudgetServiceGrpcAsyncIOTransport,
-            "grpc_asyncio",
-        ),
-    ],
-)
-def test_budget_service_client_client_options_scopes(
-    client_class, transport_class, transport_name
-):
+@pytest.mark.parametrize("client_class,transport_class,transport_name", [
+    (BudgetServiceClient, transports.BudgetServiceGrpcTransport, "grpc"),
+    (BudgetServiceAsyncClient, transports.BudgetServiceGrpcAsyncIOTransport, "grpc_asyncio")
+])
+def test_budget_service_client_client_options_scopes(client_class, transport_class, transport_name):
     # Check the case scopes are provided.
-    options = client_options.ClientOptions(scopes=["1", "2"],)
-    with mock.patch.object(transport_class, "__init__") as patched:
+    options = client_options.ClientOptions(
+        scopes=["1", "2"],
+    )
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -311,23 +256,16 @@ def test_budget_service_client_client_options_scopes(
         )
 
 
-@pytest.mark.parametrize(
-    "client_class,transport_class,transport_name",
-    [
-        (BudgetServiceClient, transports.BudgetServiceGrpcTransport, "grpc"),
-        (
-            BudgetServiceAsyncClient,
-            transports.BudgetServiceGrpcAsyncIOTransport,
-            "grpc_asyncio",
-        ),
-    ],
-)
-def test_budget_service_client_client_options_credentials_file(
-    client_class, transport_class, transport_name
-):
+@pytest.mark.parametrize("client_class,transport_class,transport_name", [
+    (BudgetServiceClient, transports.BudgetServiceGrpcTransport, "grpc"),
+    (BudgetServiceAsyncClient, transports.BudgetServiceGrpcAsyncIOTransport, "grpc_asyncio")
+])
+def test_budget_service_client_client_options_credentials_file(client_class, transport_class, transport_name):
     # Check the case credentials file is provided.
-    options = client_options.ClientOptions(credentials_file="credentials.json")
-    with mock.patch.object(transport_class, "__init__") as patched:
+    options = client_options.ClientOptions(
+        credentials_file="credentials.json"
+    )
+    with mock.patch.object(transport_class, '__init__') as patched:
         patched.return_value = None
         client = client_class(client_options=options)
         patched.assert_called_once_with(
@@ -342,12 +280,10 @@ def test_budget_service_client_client_options_credentials_file(
 
 
 def test_budget_service_client_client_options_from_dict():
-    with mock.patch(
-        "google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceGrpcTransport.__init__"
-    ) as grpc_transport:
+    with mock.patch('google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceGrpcTransport.__init__') as grpc_transport:
         grpc_transport.return_value = None
         client = BudgetServiceClient(
-            client_options={"api_endpoint": "squid.clam.whelk"}
+            client_options={'api_endpoint': 'squid.clam.whelk'}
         )
         grpc_transport.assert_called_once_with(
             credentials=None,
@@ -360,11 +296,10 @@ def test_budget_service_client_client_options_from_dict():
         )
 
 
-def test_create_budget(
-    transport: str = "grpc", request_type=budget_service.CreateBudgetRequest
-):
+def test_create_budget(transport: str = 'grpc', request_type=budget_service.CreateBudgetRequest):
     client = BudgetServiceClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -372,10 +307,17 @@ def test_create_budget(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.create_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.create_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = budget_model.Budget(
-            name="name_value", display_name="display_name_value", etag="etag_value",
+            name='name_value',
+
+            display_name='display_name_value',
+
+            etag='etag_value',
+
         )
 
         response = client.create_budget(request)
@@ -389,11 +331,11 @@ def test_create_budget(
     # Establish that the response is the type that we expect.
     assert isinstance(response, budget_model.Budget)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
-    assert response.display_name == "display_name_value"
+    assert response.display_name == 'display_name_value'
 
-    assert response.etag == "etag_value"
+    assert response.etag == 'etag_value'
 
 
 def test_create_budget_from_dict():
@@ -401,9 +343,10 @@ def test_create_budget_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_create_budget_async(transport: str = "grpc_asyncio"):
+async def test_create_budget_async(transport: str = 'grpc_asyncio'):
     client = BudgetServiceAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -412,14 +355,14 @@ async def test_create_budget_async(transport: str = "grpc_asyncio"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_budget), "__call__"
-    ) as call:
+            type(client._client._transport.create_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            budget_model.Budget(
-                name="name_value", display_name="display_name_value", etag="etag_value",
-            )
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget(
+            name='name_value',
+            display_name='display_name_value',
+            etag='etag_value',
+        ))
 
         response = await client.create_budget(request)
 
@@ -432,23 +375,27 @@ async def test_create_budget_async(transport: str = "grpc_asyncio"):
     # Establish that the response is the type that we expect.
     assert isinstance(response, budget_model.Budget)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
-    assert response.display_name == "display_name_value"
+    assert response.display_name == 'display_name_value'
 
-    assert response.etag == "etag_value"
+    assert response.etag == 'etag_value'
 
 
 def test_create_budget_field_headers():
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.CreateBudgetRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.create_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.create_budget),
+            '__call__') as call:
         call.return_value = budget_model.Budget()
 
         client.create_budget(request)
@@ -460,22 +407,27 @@ def test_create_budget_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_create_budget_field_headers_async():
-    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.CreateBudgetRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_budget), "__call__"
-    ) as call:
+            type(client._client._transport.create_budget),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget())
 
         await client.create_budget(request)
@@ -487,14 +439,16 @@ async def test_create_budget_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
-def test_update_budget(
-    transport: str = "grpc", request_type=budget_service.UpdateBudgetRequest
-):
+def test_update_budget(transport: str = 'grpc', request_type=budget_service.UpdateBudgetRequest):
     client = BudgetServiceClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -502,10 +456,17 @@ def test_update_budget(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.update_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.update_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = budget_model.Budget(
-            name="name_value", display_name="display_name_value", etag="etag_value",
+            name='name_value',
+
+            display_name='display_name_value',
+
+            etag='etag_value',
+
         )
 
         response = client.update_budget(request)
@@ -519,11 +480,11 @@ def test_update_budget(
     # Establish that the response is the type that we expect.
     assert isinstance(response, budget_model.Budget)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
-    assert response.display_name == "display_name_value"
+    assert response.display_name == 'display_name_value'
 
-    assert response.etag == "etag_value"
+    assert response.etag == 'etag_value'
 
 
 def test_update_budget_from_dict():
@@ -531,9 +492,10 @@ def test_update_budget_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_update_budget_async(transport: str = "grpc_asyncio"):
+async def test_update_budget_async(transport: str = 'grpc_asyncio'):
     client = BudgetServiceAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -542,14 +504,14 @@ async def test_update_budget_async(transport: str = "grpc_asyncio"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.update_budget), "__call__"
-    ) as call:
+            type(client._client._transport.update_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            budget_model.Budget(
-                name="name_value", display_name="display_name_value", etag="etag_value",
-            )
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget(
+            name='name_value',
+            display_name='display_name_value',
+            etag='etag_value',
+        ))
 
         response = await client.update_budget(request)
 
@@ -562,23 +524,27 @@ async def test_update_budget_async(transport: str = "grpc_asyncio"):
     # Establish that the response is the type that we expect.
     assert isinstance(response, budget_model.Budget)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
-    assert response.display_name == "display_name_value"
+    assert response.display_name == 'display_name_value'
 
-    assert response.etag == "etag_value"
+    assert response.etag == 'etag_value'
 
 
 def test_update_budget_field_headers():
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.UpdateBudgetRequest()
-    request.budget.name = "budget.name/value"
+    request.budget.name = 'budget.name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.update_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.update_budget),
+            '__call__') as call:
         call.return_value = budget_model.Budget()
 
         client.update_budget(request)
@@ -590,22 +556,27 @@ def test_update_budget_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "budget.name=budget.name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'budget.name=budget.name/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_update_budget_field_headers_async():
-    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.UpdateBudgetRequest()
-    request.budget.name = "budget.name/value"
+    request.budget.name = 'budget.name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.update_budget), "__call__"
-    ) as call:
+            type(client._client._transport.update_budget),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget())
 
         await client.update_budget(request)
@@ -617,14 +588,16 @@ async def test_update_budget_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "budget.name=budget.name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'budget.name=budget.name/value',
+    ) in kw['metadata']
 
 
-def test_get_budget(
-    transport: str = "grpc", request_type=budget_service.GetBudgetRequest
-):
+def test_get_budget(transport: str = 'grpc', request_type=budget_service.GetBudgetRequest):
     client = BudgetServiceClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -632,10 +605,17 @@ def test_get_budget(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.get_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = budget_model.Budget(
-            name="name_value", display_name="display_name_value", etag="etag_value",
+            name='name_value',
+
+            display_name='display_name_value',
+
+            etag='etag_value',
+
         )
 
         response = client.get_budget(request)
@@ -649,11 +629,11 @@ def test_get_budget(
     # Establish that the response is the type that we expect.
     assert isinstance(response, budget_model.Budget)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
-    assert response.display_name == "display_name_value"
+    assert response.display_name == 'display_name_value'
 
-    assert response.etag == "etag_value"
+    assert response.etag == 'etag_value'
 
 
 def test_get_budget_from_dict():
@@ -661,9 +641,10 @@ def test_get_budget_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_get_budget_async(transport: str = "grpc_asyncio"):
+async def test_get_budget_async(transport: str = 'grpc_asyncio'):
     client = BudgetServiceAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -672,14 +653,14 @@ async def test_get_budget_async(transport: str = "grpc_asyncio"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.get_budget), "__call__"
-    ) as call:
+            type(client._client._transport.get_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            budget_model.Budget(
-                name="name_value", display_name="display_name_value", etag="etag_value",
-            )
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget(
+            name='name_value',
+            display_name='display_name_value',
+            etag='etag_value',
+        ))
 
         response = await client.get_budget(request)
 
@@ -692,23 +673,27 @@ async def test_get_budget_async(transport: str = "grpc_asyncio"):
     # Establish that the response is the type that we expect.
     assert isinstance(response, budget_model.Budget)
 
-    assert response.name == "name_value"
+    assert response.name == 'name_value'
 
-    assert response.display_name == "display_name_value"
+    assert response.display_name == 'display_name_value'
 
-    assert response.etag == "etag_value"
+    assert response.etag == 'etag_value'
 
 
 def test_get_budget_field_headers():
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.GetBudgetRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.get_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.get_budget),
+            '__call__') as call:
         call.return_value = budget_model.Budget()
 
         client.get_budget(request)
@@ -720,22 +705,27 @@ def test_get_budget_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_get_budget_field_headers_async():
-    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.GetBudgetRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.get_budget), "__call__"
-    ) as call:
+            type(client._client._transport.get_budget),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget())
 
         await client.get_budget(request)
@@ -747,14 +737,16 @@ async def test_get_budget_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
-def test_list_budgets(
-    transport: str = "grpc", request_type=budget_service.ListBudgetsRequest
-):
+def test_list_budgets(transport: str = 'grpc', request_type=budget_service.ListBudgetsRequest):
     client = BudgetServiceClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -762,10 +754,13 @@ def test_list_budgets(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_budgets), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.list_budgets),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = budget_service.ListBudgetsResponse(
-            next_page_token="next_page_token_value",
+            next_page_token='next_page_token_value',
+
         )
 
         response = client.list_budgets(request)
@@ -779,7 +774,7 @@ def test_list_budgets(
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListBudgetsPager)
 
-    assert response.next_page_token == "next_page_token_value"
+    assert response.next_page_token == 'next_page_token_value'
 
 
 def test_list_budgets_from_dict():
@@ -787,9 +782,10 @@ def test_list_budgets_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_list_budgets_async(transport: str = "grpc_asyncio"):
+async def test_list_budgets_async(transport: str = 'grpc_asyncio'):
     client = BudgetServiceAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -798,12 +794,12 @@ async def test_list_budgets_async(transport: str = "grpc_asyncio"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_budgets), "__call__"
-    ) as call:
+            type(client._client._transport.list_budgets),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            budget_service.ListBudgetsResponse(next_page_token="next_page_token_value",)
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_service.ListBudgetsResponse(
+            next_page_token='next_page_token_value',
+        ))
 
         response = await client.list_budgets(request)
 
@@ -816,19 +812,23 @@ async def test_list_budgets_async(transport: str = "grpc_asyncio"):
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListBudgetsAsyncPager)
 
-    assert response.next_page_token == "next_page_token_value"
+    assert response.next_page_token == 'next_page_token_value'
 
 
 def test_list_budgets_field_headers():
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.ListBudgetsRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_budgets), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.list_budgets),
+            '__call__') as call:
         call.return_value = budget_service.ListBudgetsResponse()
 
         client.list_budgets(request)
@@ -840,25 +840,28 @@ def test_list_budgets_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_list_budgets_field_headers_async():
-    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.ListBudgetsRequest()
-    request.parent = "parent/value"
+    request.parent = 'parent/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_budgets), "__call__"
-    ) as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            budget_service.ListBudgetsResponse()
-        )
+            type(client._client._transport.list_budgets),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_service.ListBudgetsResponse())
 
         await client.list_budgets(request)
 
@@ -869,14 +872,21 @@ async def test_list_budgets_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'parent=parent/value',
+    ) in kw['metadata']
 
 
 def test_list_budgets_pager():
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials,)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_budgets), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.list_budgets),
+            '__call__') as call:
         # Set the response to a series of pages.
         call.side_effect = (
             budget_service.ListBudgetsResponse(
@@ -885,21 +895,32 @@ def test_list_budgets_pager():
                     budget_model.Budget(),
                     budget_model.Budget(),
                 ],
-                next_page_token="abc",
-            ),
-            budget_service.ListBudgetsResponse(budgets=[], next_page_token="def",),
-            budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(),], next_page_token="ghi",
+                next_page_token='abc',
             ),
             budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(), budget_model.Budget(),],
+                budgets=[],
+                next_page_token='def',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                ],
+                next_page_token='ghi',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                    budget_model.Budget(),
+                ],
             ),
             RuntimeError,
         )
 
         metadata = ()
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", ""),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', ''),
+            )),
         )
         pager = client.list_budgets(request={})
 
@@ -907,14 +928,18 @@ def test_list_budgets_pager():
 
         results = [i for i in pager]
         assert len(results) == 6
-        assert all(isinstance(i, budget_model.Budget) for i in results)
-
+        assert all(isinstance(i, budget_model.Budget)
+                   for i in results)
 
 def test_list_budgets_pages():
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials,)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.list_budgets), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.list_budgets),
+            '__call__') as call:
         # Set the response to a series of pages.
         call.side_effect = (
             budget_service.ListBudgetsResponse(
@@ -923,32 +948,40 @@ def test_list_budgets_pages():
                     budget_model.Budget(),
                     budget_model.Budget(),
                 ],
-                next_page_token="abc",
-            ),
-            budget_service.ListBudgetsResponse(budgets=[], next_page_token="def",),
-            budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(),], next_page_token="ghi",
+                next_page_token='abc',
             ),
             budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(), budget_model.Budget(),],
+                budgets=[],
+                next_page_token='def',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                ],
+                next_page_token='ghi',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                    budget_model.Budget(),
+                ],
             ),
             RuntimeError,
         )
         pages = list(client.list_budgets(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
+        for page, token in zip(pages, ['abc','def','ghi', '']):
             assert page.raw_page.next_page_token == token
-
 
 @pytest.mark.asyncio
 async def test_list_budgets_async_pager():
-    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials,)
+    client = BudgetServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_budgets),
-        "__call__",
-        new_callable=mock.AsyncMock,
-    ) as call:
+            type(client._client._transport.list_budgets),
+            '__call__', new_callable=mock.AsyncMock) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             budget_service.ListBudgetsResponse(
@@ -957,37 +990,46 @@ async def test_list_budgets_async_pager():
                     budget_model.Budget(),
                     budget_model.Budget(),
                 ],
-                next_page_token="abc",
-            ),
-            budget_service.ListBudgetsResponse(budgets=[], next_page_token="def",),
-            budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(),], next_page_token="ghi",
+                next_page_token='abc',
             ),
             budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(), budget_model.Budget(),],
+                budgets=[],
+                next_page_token='def',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                ],
+                next_page_token='ghi',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                    budget_model.Budget(),
+                ],
             ),
             RuntimeError,
         )
         async_pager = await client.list_budgets(request={},)
-        assert async_pager.next_page_token == "abc"
+        assert async_pager.next_page_token == 'abc'
         responses = []
         async for response in async_pager:
             responses.append(response)
 
         assert len(responses) == 6
-        assert all(isinstance(i, budget_model.Budget) for i in responses)
-
+        assert all(isinstance(i, budget_model.Budget)
+                   for i in responses)
 
 @pytest.mark.asyncio
 async def test_list_budgets_async_pages():
-    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials,)
+    client = BudgetServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials,
+    )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.list_budgets),
-        "__call__",
-        new_callable=mock.AsyncMock,
-    ) as call:
+            type(client._client._transport.list_budgets),
+            '__call__', new_callable=mock.AsyncMock) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             budget_service.ListBudgetsResponse(
@@ -996,29 +1038,37 @@ async def test_list_budgets_async_pages():
                     budget_model.Budget(),
                     budget_model.Budget(),
                 ],
-                next_page_token="abc",
-            ),
-            budget_service.ListBudgetsResponse(budgets=[], next_page_token="def",),
-            budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(),], next_page_token="ghi",
+                next_page_token='abc',
             ),
             budget_service.ListBudgetsResponse(
-                budgets=[budget_model.Budget(), budget_model.Budget(),],
+                budgets=[],
+                next_page_token='def',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                ],
+                next_page_token='ghi',
+            ),
+            budget_service.ListBudgetsResponse(
+                budgets=[
+                    budget_model.Budget(),
+                    budget_model.Budget(),
+                ],
             ),
             RuntimeError,
         )
         pages = []
         async for page in (await client.list_budgets(request={})).pages:
             pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
+        for page, token in zip(pages, ['abc','def','ghi', '']):
             assert page.raw_page.next_page_token == token
 
 
-def test_delete_budget(
-    transport: str = "grpc", request_type=budget_service.DeleteBudgetRequest
-):
+def test_delete_budget(transport: str = 'grpc', request_type=budget_service.DeleteBudgetRequest):
     client = BudgetServiceClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1026,7 +1076,9 @@ def test_delete_budget(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.delete_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = None
 
@@ -1047,9 +1099,10 @@ def test_delete_budget_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_delete_budget_async(transport: str = "grpc_asyncio"):
+async def test_delete_budget_async(transport: str = 'grpc_asyncio'):
     client = BudgetServiceAsyncClient(
-        credentials=credentials.AnonymousCredentials(), transport=transport,
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1058,8 +1111,8 @@ async def test_delete_budget_async(transport: str = "grpc_asyncio"):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_budget), "__call__"
-    ) as call:
+            type(client._client._transport.delete_budget),
+            '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
@@ -1076,15 +1129,19 @@ async def test_delete_budget_async(transport: str = "grpc_asyncio"):
 
 
 def test_delete_budget_field_headers():
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.DeleteBudgetRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.delete_budget), "__call__") as call:
+    with mock.patch.object(
+            type(client._transport.delete_budget),
+            '__call__') as call:
         call.return_value = None
 
         client.delete_budget(request)
@@ -1096,22 +1153,27 @@ def test_delete_budget_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
 @pytest.mark.asyncio
 async def test_delete_budget_field_headers_async():
-    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+    client = BudgetServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = budget_service.DeleteBudgetRequest()
-    request.name = "name/value"
+    request.name = 'name/value'
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.delete_budget), "__call__"
-    ) as call:
+            type(client._client._transport.delete_budget),
+            '__call__') as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
 
         await client.delete_budget(request)
@@ -1123,7 +1185,10 @@ async def test_delete_budget_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
+    assert (
+        'x-goog-request-params',
+        'name=name/value',
+    ) in kw['metadata']
 
 
 def test_credentials_transport_error():
@@ -1133,7 +1198,8 @@ def test_credentials_transport_error():
     )
     with pytest.raises(ValueError):
         client = BudgetServiceClient(
-            credentials=credentials.AnonymousCredentials(), transport=transport,
+            credentials=credentials.AnonymousCredentials(),
+            transport=transport,
         )
 
     # It is an error to provide a credentials file and a transport instance.
@@ -1152,7 +1218,8 @@ def test_credentials_transport_error():
     )
     with pytest.raises(ValueError):
         client = BudgetServiceClient(
-            client_options={"scopes": ["1", "2"]}, transport=transport,
+            client_options={"scopes": ["1", "2"]},
+            transport=transport,
         )
 
 
@@ -1182,8 +1249,13 @@ def test_transport_get_channel():
 
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
-    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client._transport, transports.BudgetServiceGrpcTransport,)
+    client = BudgetServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+    )
+    assert isinstance(
+        client._transport,
+        transports.BudgetServiceGrpcTransport,
+    )
 
 
 def test_budget_service_base_transport_error():
@@ -1191,15 +1263,13 @@ def test_budget_service_base_transport_error():
     with pytest.raises(exceptions.DuplicateCredentialArgs):
         transport = transports.BudgetServiceTransport(
             credentials=credentials.AnonymousCredentials(),
-            credentials_file="credentials.json",
+            credentials_file="credentials.json"
         )
 
 
 def test_budget_service_base_transport():
     # Instantiate the base transport.
-    with mock.patch(
-        "google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceTransport.__init__"
-    ) as Transport:
+    with mock.patch('google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceTransport.__init__') as Transport:
         Transport.return_value = None
         transport = transports.BudgetServiceTransport(
             credentials=credentials.AnonymousCredentials(),
@@ -1208,12 +1278,12 @@ def test_budget_service_base_transport():
     # Every method on the transport should just blindly
     # raise NotImplementedError.
     methods = (
-        "create_budget",
-        "update_budget",
-        "get_budget",
-        "list_budgets",
-        "delete_budget",
-    )
+        'create_budget',
+        'update_budget',
+        'get_budget',
+        'list_budgets',
+        'delete_budget',
+        )
     for method in methods:
         with pytest.raises(NotImplementedError):
             getattr(transport, method)(request=object())
@@ -1221,30 +1291,27 @@ def test_budget_service_base_transport():
 
 def test_budget_service_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
-    with mock.patch.object(
-        auth, "load_credentials_from_file"
-    ) as load_creds, mock.patch(
-        "google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceTransport._prep_wrapped_messages"
-    ) as Transport:
+    with mock.patch.object(auth, 'load_credentials_from_file') as load_creds, mock.patch('google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceTransport._prep_wrapped_messages') as Transport:
         Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
         transport = transports.BudgetServiceTransport(
-            credentials_file="credentials.json", quota_project_id="octopus",
+            credentials_file="credentials.json",
+            quota_project_id="octopus",
         )
-        load_creds.assert_called_once_with(
-            "credentials.json",
-            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+        load_creds.assert_called_once_with("credentials.json", scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',
+            ),
             quota_project_id="octopus",
         )
 
 
 def test_budget_service_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, 'default') as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
         BudgetServiceClient()
-        adc.assert_called_once_with(
-            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+        adc.assert_called_once_with(scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',),
             quota_project_id=None,
         )
 
@@ -1252,39 +1319,32 @@ def test_budget_service_auth_adc():
 def test_budget_service_transport_auth_adc():
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, 'default') as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        transports.BudgetServiceGrpcTransport(
-            host="squid.clam.whelk", quota_project_id="octopus"
-        )
-        adc.assert_called_once_with(
-            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+        transports.BudgetServiceGrpcTransport(host="squid.clam.whelk", quota_project_id="octopus")
+        adc.assert_called_once_with(scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',),
             quota_project_id="octopus",
         )
-
 
 def test_budget_service_host_no_port():
     client = BudgetServiceClient(
         credentials=credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(
-            api_endpoint="billingbudgets.googleapis.com"
-        ),
+        client_options=client_options.ClientOptions(api_endpoint='billingbudgets.googleapis.com'),
     )
-    assert client._transport._host == "billingbudgets.googleapis.com:443"
+    assert client._transport._host == 'billingbudgets.googleapis.com:443'
 
 
 def test_budget_service_host_with_port():
     client = BudgetServiceClient(
         credentials=credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(
-            api_endpoint="billingbudgets.googleapis.com:8000"
-        ),
+        client_options=client_options.ClientOptions(api_endpoint='billingbudgets.googleapis.com:8000'),
     )
-    assert client._transport._host == "billingbudgets.googleapis.com:8000"
+    assert client._transport._host == 'billingbudgets.googleapis.com:8000'
 
 
 def test_budget_service_grpc_transport_channel():
-    channel = grpc.insecure_channel("http://localhost/")
+    channel = grpc.insecure_channel('http://localhost/')
 
     # Check that if channel is provided, mtls endpoint and client_cert_source
     # won't be used.
@@ -1301,7 +1361,7 @@ def test_budget_service_grpc_transport_channel():
 
 
 def test_budget_service_grpc_asyncio_transport_channel():
-    channel = aio.insecure_channel("http://localhost/")
+    channel = aio.insecure_channel('http://localhost/')
 
     # Check that if channel is provided, mtls endpoint and client_cert_source
     # won't be used.
@@ -1345,7 +1405,9 @@ def test_budget_service_grpc_transport_channel_mtls_with_client_cert_source(
         "mtls.squid.clam.whelk:443",
         credentials=mock_cred,
         credentials_file=None,
-        scopes=("https://www.googleapis.com/auth/cloud-platform",),
+        scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',
+        ),
         ssl_credentials=mock_ssl_cred,
         quota_project_id=None,
     )
@@ -1380,7 +1442,9 @@ def test_budget_service_grpc_asyncio_transport_channel_mtls_with_client_cert_sou
         "mtls.squid.clam.whelk:443",
         credentials=mock_cred,
         credentials_file=None,
-        scopes=("https://www.googleapis.com/auth/cloud-platform",),
+        scopes=(
+            'https://www.googleapis.com/auth/cloud-platform',
+        ),
         ssl_credentials=mock_ssl_cred,
         quota_project_id=None,
     )
@@ -1417,7 +1481,9 @@ def test_budget_service_grpc_transport_channel_mtls_with_adc(
             "mtls.squid.clam.whelk:443",
             credentials=mock_cred,
             credentials_file=None,
-            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            scopes=(
+                'https://www.googleapis.com/auth/cloud-platform',
+            ),
             ssl_credentials=mock_ssl_cred,
             quota_project_id=None,
         )
@@ -1454,7 +1520,9 @@ def test_budget_service_grpc_asyncio_transport_channel_mtls_with_adc(
             "mtls.squid.clam.whelk:443",
             credentials=mock_cred,
             credentials_file=None,
-            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            scopes=(
+                'https://www.googleapis.com/auth/cloud-platform',
+            ),
             ssl_credentials=mock_ssl_cred,
             quota_project_id=None,
         )
@@ -1465,17 +1533,16 @@ def test_budget_path():
     billing_account = "squid"
     budget = "clam"
 
-    expected = "billingAccounts/{billing_account}/budgets/{budget}".format(
-        billing_account=billing_account, budget=budget,
-    )
+    expected = "billingAccounts/{billing_account}/budgets/{budget}".format(billing_account=billing_account, budget=budget, )
     actual = BudgetServiceClient.budget_path(billing_account, budget)
     assert expected == actual
 
 
 def test_parse_budget_path():
     expected = {
-        "billing_account": "whelk",
-        "budget": "octopus",
+    "billing_account": "whelk",
+    "budget": "octopus",
+
     }
     path = BudgetServiceClient.budget_path(**expected)
 
