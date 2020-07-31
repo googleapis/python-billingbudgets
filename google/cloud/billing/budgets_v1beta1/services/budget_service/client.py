@@ -21,14 +21,14 @@ import re
 from typing import Callable, Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.auth.transport import mtls                 # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.auth.transport import mtls  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account              # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.billing.budgets_v1beta1.services.budget_service import pagers
 from google.cloud.billing.budgets_v1beta1.types import budget_model
@@ -46,13 +46,12 @@ class BudgetServiceClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[BudgetServiceTransport]]
-    _transport_registry['grpc'] = BudgetServiceGrpcTransport
-    _transport_registry['grpc_asyncio'] = BudgetServiceGrpcAsyncIOTransport
 
-    def get_transport_class(cls,
-            label: str = None,
-        ) -> Type[BudgetServiceTransport]:
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[BudgetServiceTransport]]
+    _transport_registry["grpc"] = BudgetServiceGrpcTransport
+    _transport_registry["grpc_asyncio"] = BudgetServiceGrpcAsyncIOTransport
+
+    def get_transport_class(cls, label: str = None,) -> Type[BudgetServiceTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -106,7 +105,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'billingbudgets.googleapis.com'
+    DEFAULT_ENDPOINT = "billingbudgets.googleapis.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -125,29 +124,34 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         Returns:
             {@api.name}: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
 
     @staticmethod
-    def budget_path(billing_account: str,budget: str,) -> str:
+    def budget_path(billing_account: str, budget: str,) -> str:
         """Return a fully-qualified budget string."""
-        return "billingAccounts/{billing_account}/budgets/{budget}".format(billing_account=billing_account, budget=budget, )
+        return "billingAccounts/{billing_account}/budgets/{budget}".format(
+            billing_account=billing_account, budget=budget,
+        )
 
     @staticmethod
-    def parse_budget_path(path: str) -> Dict[str,str]:
+    def parse_budget_path(path: str) -> Dict[str, str]:
         """Parse a budget path into its component segments."""
-        m = re.match(r"^billingAccounts/(?P<billing_account>.+?)/budgets/(?P<budget>.+?)$", path)
+        m = re.match(
+            r"^billingAccounts/(?P<billing_account>.+?)/budgets/(?P<budget>.+?)$", path
+        )
         return m.groupdict() if m else {}
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, BudgetServiceTransport] = None,
-            client_options: ClientOptions = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, BudgetServiceTransport] = None,
+        client_options: ClientOptions = None,
+    ) -> None:
         """Instantiate the budget service client.
 
         Args:
@@ -194,7 +198,9 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
                     or mtls.has_default_client_cert_source()
                 )
                 client_options.api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT if has_client_cert_source else self.DEFAULT_ENDPOINT
+                    self.DEFAULT_MTLS_ENDPOINT
+                    if has_client_cert_source
+                    else self.DEFAULT_ENDPOINT
                 )
             else:
                 raise MutualTLSChannelError(
@@ -207,8 +213,10 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         if isinstance(transport, BudgetServiceTransport):
             # transport is a BudgetServiceTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+                raise ValueError(
+                    "When providing a transport instance, "
+                    "provide its credentials directly."
+                )
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -227,13 +235,14 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
             )
 
-    def create_budget(self,
-            request: budget_service.CreateBudgetRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> budget_model.Budget:
+    def create_budget(
+        self,
+        request: budget_service.CreateBudgetRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> budget_model.Budget:
         r"""Creates a new budget. See
         <a href="https://cloud.google.com/billing/quotas">Quotas
         and limits</a> for more information on the limits of the
@@ -278,29 +287,23 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_budget(self,
-            request: budget_service.UpdateBudgetRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> budget_model.Budget:
+    def update_budget(
+        self,
+        request: budget_service.UpdateBudgetRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> budget_model.Budget:
         r"""Updates a budget and returns the updated budget.
         WARNING: There are some fields exposed on the Google
         Cloud Console that aren't available on this API. Budget
@@ -346,29 +349,25 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('budget.name', request.budget.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("budget.name", request.budget.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_budget(self,
-            request: budget_service.GetBudgetRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> budget_model.Budget:
+    def get_budget(
+        self,
+        request: budget_service.GetBudgetRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> budget_model.Budget:
         r"""Returns a budget.
         WARNING: There are some fields exposed on the Google
         Cloud Console that aren't available on this API. When
@@ -415,29 +414,23 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def list_budgets(self,
-            request: budget_service.ListBudgetsRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListBudgetsPager:
+    def list_budgets(
+        self,
+        request: budget_service.ListBudgetsRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListBudgetsPager:
         r"""Returns a list of budgets for a billing account.
         WARNING: There are some fields exposed on the Google
         Cloud Console that aren't available on this API. When
@@ -479,38 +472,29 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListBudgetsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def delete_budget(self,
-            request: budget_service.DeleteBudgetRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> None:
+    def delete_budget(
+        self,
+        request: budget_service.DeleteBudgetRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
         r"""Deletes a budget. Returns successfully if already
         deleted.
 
@@ -540,35 +524,23 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
         rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
+            request, retry=retry, timeout=timeout, metadata=metadata,
         )
-
-
-
-
-
 
 
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-billing-budgets',
+            "google-cloud-billing-budgets",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'BudgetServiceClient',
-)
+__all__ = ("BudgetServiceClient",)

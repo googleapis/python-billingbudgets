@@ -23,14 +23,14 @@ from google.type import money_pb2 as money  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.billing.budgets.v1beta1',
+    package="google.cloud.billing.budgets.v1beta1",
     manifest={
-        'Budget',
-        'BudgetAmount',
-        'LastPeriodAmount',
-        'ThresholdRule',
-        'AllUpdatesRule',
-        'Filter',
+        "Budget",
+        "BudgetAmount",
+        "LastPeriodAmount",
+        "ThresholdRule",
+        "AllUpdatesRule",
+        "Filter",
     },
 )
 
@@ -76,21 +76,15 @@ class Budget(proto.Message):
 
     display_name = proto.Field(proto.STRING, number=2)
 
-    budget_filter = proto.Field(proto.MESSAGE, number=3,
-        message='Filter',
+    budget_filter = proto.Field(proto.MESSAGE, number=3, message="Filter",)
+
+    amount = proto.Field(proto.MESSAGE, number=4, message="BudgetAmount",)
+
+    threshold_rules = proto.RepeatedField(
+        proto.MESSAGE, number=5, message="ThresholdRule",
     )
 
-    amount = proto.Field(proto.MESSAGE, number=4,
-        message='BudgetAmount',
-    )
-
-    threshold_rules = proto.RepeatedField(proto.MESSAGE, number=5,
-        message='ThresholdRule',
-    )
-
-    all_updates_rule = proto.Field(proto.MESSAGE, number=6,
-        message='AllUpdatesRule',
-    )
+    all_updates_rule = proto.Field(proto.MESSAGE, number=6, message="AllUpdatesRule",)
 
     etag = proto.Field(proto.STRING, number=7)
 
@@ -109,12 +103,12 @@ class BudgetAmount(proto.Message):
             budget for the present period.
     """
 
-    specified_amount = proto.Field(proto.MESSAGE, number=1, oneof='budget_amount',
-        message=money.Money,
+    specified_amount = proto.Field(
+        proto.MESSAGE, number=1, oneof="budget_amount", message=money.Money,
     )
 
-    last_period_amount = proto.Field(proto.MESSAGE, number=2, oneof='budget_amount',
-        message='LastPeriodAmount',
+    last_period_amount = proto.Field(
+        proto.MESSAGE, number=2, oneof="budget_amount", message="LastPeriodAmount",
     )
 
 
@@ -146,6 +140,7 @@ class ThresholdRule(proto.Message):
             passed the threshold. Behavior defaults to CURRENT_SPEND if
             not set.
     """
+
     class Basis(proto.Enum):
         r"""The type of basis used to determine if spend has passed the
         threshold.
@@ -156,9 +151,7 @@ class ThresholdRule(proto.Message):
 
     threshold_percent = proto.Field(proto.DOUBLE, number=1)
 
-    spend_basis = proto.Field(proto.ENUM, number=2,
-        enum=Basis,
-    )
+    spend_basis = proto.Field(proto.ENUM, number=2, enum=Basis,)
 
 
 class AllUpdatesRule(proto.Message):
@@ -240,6 +233,7 @@ class Filter(proto.Message):
             the report will include all labeled and
             unlabeled usage.
     """
+
     class CreditTypesTreatment(proto.Enum):
         r"""Specifies how credits should be treated when determining
         spend for threshold calculations.
@@ -250,16 +244,16 @@ class Filter(proto.Message):
 
     projects = proto.RepeatedField(proto.STRING, number=1)
 
-    credit_types_treatment = proto.Field(proto.ENUM, number=4,
-        enum=CreditTypesTreatment,
+    credit_types_treatment = proto.Field(
+        proto.ENUM, number=4, enum=CreditTypesTreatment,
     )
 
     services = proto.RepeatedField(proto.STRING, number=3)
 
     subaccounts = proto.RepeatedField(proto.STRING, number=5)
 
-    labels = proto.MapField(proto.STRING, proto.MESSAGE, number=6,
-        message=struct.ListValue,
+    labels = proto.MapField(
+        proto.STRING, proto.MESSAGE, number=6, message=struct.ListValue,
     )
 
 

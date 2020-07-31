@@ -19,6 +19,6 @@ from .client import BudgetServiceClient
 from .async_client import BudgetServiceAsyncClient
 
 __all__ = (
-    'BudgetServiceClient',
-    'BudgetServiceAsyncClient',
+    "BudgetServiceClient",
+    "BudgetServiceAsyncClient",
 )

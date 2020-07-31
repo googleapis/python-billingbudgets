@@ -17,11 +17,11 @@
 
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers_async         # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core import grpc_helpers_async  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc                        # type: ignore
+import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.billing.budgets_v1beta1.types import budget_model
@@ -51,13 +51,15 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'billingbudgets.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: Optional[str] = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> aio.Channel:
+    def create_channel(
+        cls,
+        host: str = "billingbudgets.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             address (Optional[str]): The host for the channel to use.
@@ -86,19 +88,21 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
-    def __init__(self, *,
-            host: str = 'billingbudgets.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            channel: aio.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id=None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "billingbudgets.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        channel: aio.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id=None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -142,7 +146,11 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
         elif api_mtls_endpoint:
-            host = api_mtls_endpoint if ":" in api_mtls_endpoint else api_mtls_endpoint + ":443"
+            host = (
+                api_mtls_endpoint
+                if ":" in api_mtls_endpoint
+                else api_mtls_endpoint + ":443"
+            )
 
             # Create SSL credentials with client_cert_source or application
             # default SSL credentials.
@@ -184,19 +192,18 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         """
         # Sanity check: Only create a new channel if we do not already
         # have one.
-        if not hasattr(self, '_grpc_channel'):
+        if not hasattr(self, "_grpc_channel"):
             self._grpc_channel = self.create_channel(
-                self._host,
-                credentials=self._credentials,
+                self._host, credentials=self._credentials,
             )
 
         # Return the channel from cache.
         return self._grpc_channel
 
     @property
-    def create_budget(self) -> Callable[
-            [budget_service.CreateBudgetRequest],
-            Awaitable[budget_model.Budget]]:
+    def create_budget(
+        self,
+    ) -> Callable[[budget_service.CreateBudgetRequest], Awaitable[budget_model.Budget]]:
         r"""Return a callable for the create budget method over gRPC.
 
         Creates a new budget. See
@@ -214,18 +221,18 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_budget' not in self._stubs:
-            self._stubs['create_budget'] = self.grpc_channel.unary_unary(
-                '/google.cloud.billing.budgets.v1beta1.BudgetService/CreateBudget',
+        if "create_budget" not in self._stubs:
+            self._stubs["create_budget"] = self.grpc_channel.unary_unary(
+                "/google.cloud.billing.budgets.v1beta1.BudgetService/CreateBudget",
                 request_serializer=budget_service.CreateBudgetRequest.serialize,
                 response_deserializer=budget_model.Budget.deserialize,
             )
-        return self._stubs['create_budget']
+        return self._stubs["create_budget"]
 
     @property
-    def update_budget(self) -> Callable[
-            [budget_service.UpdateBudgetRequest],
-            Awaitable[budget_model.Budget]]:
+    def update_budget(
+        self,
+    ) -> Callable[[budget_service.UpdateBudgetRequest], Awaitable[budget_model.Budget]]:
         r"""Return a callable for the update budget method over gRPC.
 
         Updates a budget and returns the updated budget.
@@ -244,18 +251,18 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_budget' not in self._stubs:
-            self._stubs['update_budget'] = self.grpc_channel.unary_unary(
-                '/google.cloud.billing.budgets.v1beta1.BudgetService/UpdateBudget',
+        if "update_budget" not in self._stubs:
+            self._stubs["update_budget"] = self.grpc_channel.unary_unary(
+                "/google.cloud.billing.budgets.v1beta1.BudgetService/UpdateBudget",
                 request_serializer=budget_service.UpdateBudgetRequest.serialize,
                 response_deserializer=budget_model.Budget.deserialize,
             )
-        return self._stubs['update_budget']
+        return self._stubs["update_budget"]
 
     @property
-    def get_budget(self) -> Callable[
-            [budget_service.GetBudgetRequest],
-            Awaitable[budget_model.Budget]]:
+    def get_budget(
+        self,
+    ) -> Callable[[budget_service.GetBudgetRequest], Awaitable[budget_model.Budget]]:
         r"""Return a callable for the get budget method over gRPC.
 
         Returns a budget.
@@ -275,18 +282,21 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_budget' not in self._stubs:
-            self._stubs['get_budget'] = self.grpc_channel.unary_unary(
-                '/google.cloud.billing.budgets.v1beta1.BudgetService/GetBudget',
+        if "get_budget" not in self._stubs:
+            self._stubs["get_budget"] = self.grpc_channel.unary_unary(
+                "/google.cloud.billing.budgets.v1beta1.BudgetService/GetBudget",
                 request_serializer=budget_service.GetBudgetRequest.serialize,
                 response_deserializer=budget_model.Budget.deserialize,
             )
-        return self._stubs['get_budget']
+        return self._stubs["get_budget"]
 
     @property
-    def list_budgets(self) -> Callable[
-            [budget_service.ListBudgetsRequest],
-            Awaitable[budget_service.ListBudgetsResponse]]:
+    def list_budgets(
+        self,
+    ) -> Callable[
+        [budget_service.ListBudgetsRequest],
+        Awaitable[budget_service.ListBudgetsResponse],
+    ]:
         r"""Return a callable for the list budgets method over gRPC.
 
         Returns a list of budgets for a billing account.
@@ -306,18 +316,18 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_budgets' not in self._stubs:
-            self._stubs['list_budgets'] = self.grpc_channel.unary_unary(
-                '/google.cloud.billing.budgets.v1beta1.BudgetService/ListBudgets',
+        if "list_budgets" not in self._stubs:
+            self._stubs["list_budgets"] = self.grpc_channel.unary_unary(
+                "/google.cloud.billing.budgets.v1beta1.BudgetService/ListBudgets",
                 request_serializer=budget_service.ListBudgetsRequest.serialize,
                 response_deserializer=budget_service.ListBudgetsResponse.deserialize,
             )
-        return self._stubs['list_budgets']
+        return self._stubs["list_budgets"]
 
     @property
-    def delete_budget(self) -> Callable[
-            [budget_service.DeleteBudgetRequest],
-            Awaitable[empty.Empty]]:
+    def delete_budget(
+        self,
+    ) -> Callable[[budget_service.DeleteBudgetRequest], Awaitable[empty.Empty]]:
         r"""Return a callable for the delete budget method over gRPC.
 
         Deletes a budget. Returns successfully if already
@@ -333,15 +343,13 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_budget' not in self._stubs:
-            self._stubs['delete_budget'] = self.grpc_channel.unary_unary(
-                '/google.cloud.billing.budgets.v1beta1.BudgetService/DeleteBudget',
+        if "delete_budget" not in self._stubs:
+            self._stubs["delete_budget"] = self.grpc_channel.unary_unary(
+                "/google.cloud.billing.budgets.v1beta1.BudgetService/DeleteBudget",
                 request_serializer=budget_service.DeleteBudgetRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs['delete_budget']
+        return self._stubs["delete_budget"]
 
 
-__all__ = (
-    'BudgetServiceGrpcAsyncIOTransport',
-)
+__all__ = ("BudgetServiceGrpcAsyncIOTransport",)

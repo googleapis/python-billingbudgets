@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
@@ -33,28 +33,28 @@ from google.protobuf import empty_pb2 as empty  # type: ignore
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-billing-budgets',
+            "google-cloud-billing-budgets",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
+
 class BudgetServiceTransport(abc.ABC):
     """Abstract transport class for BudgetService."""
 
-    AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-    )
+    AUTH_SCOPES = ("https://www.googleapis.com/auth/cloud-platform",)
 
     def __init__(
-            self, *,
-            host: str = 'billingbudgets.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: typing.Optional[str] = None,
-            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-            quota_project_id: typing.Optional[str] = None,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = "billingbudgets.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        quota_project_id: typing.Optional[str] = None,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -72,24 +72,26 @@ class BudgetServiceTransport(abc.ABC):
                 and quota.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                                credentials_file,
-                                scopes=scopes,
-                                quota_project_id=quota_project_id
-                            )
+                credentials_file, scopes=scopes, quota_project_id=quota_project_id
+            )
 
         elif credentials is None:
-            credentials, _ = auth.default(scopes=scopes, quota_project_id=quota_project_id)
+            credentials, _ = auth.default(
+                scopes=scopes, quota_project_id=quota_project_id
+            )
 
         # Save the credentials.
         self._credentials = credentials
@@ -101,9 +103,7 @@ class BudgetServiceTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.create_budget: gapic_v1.method.wrap_method(
-                self.create_budget,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.create_budget, default_timeout=60.0, client_info=_client_info,
             ),
             self.update_budget: gapic_v1.method.wrap_method(
                 self.update_budget,
@@ -112,8 +112,7 @@ class BudgetServiceTransport(abc.ABC):
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.ServiceUnavailable,
-exceptions.DeadlineExceeded,
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                     ),
                 ),
                 default_timeout=60.0,
@@ -126,8 +125,7 @@ exceptions.DeadlineExceeded,
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.ServiceUnavailable,
-exceptions.DeadlineExceeded,
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                     ),
                 ),
                 default_timeout=60.0,
@@ -140,8 +138,7 @@ exceptions.DeadlineExceeded,
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.ServiceUnavailable,
-exceptions.DeadlineExceeded,
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                     ),
                 ),
                 default_timeout=60.0,
@@ -154,62 +151,61 @@ exceptions.DeadlineExceeded,
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.ServiceUnavailable,
-exceptions.DeadlineExceeded,
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                     ),
                 ),
                 default_timeout=60.0,
                 client_info=_client_info,
             ),
-
         }
 
     @property
-    def create_budget(self) -> typing.Callable[
-            [budget_service.CreateBudgetRequest],
-            typing.Union[
-                budget_model.Budget,
-                typing.Awaitable[budget_model.Budget]
-            ]]:
+    def create_budget(
+        self,
+    ) -> typing.Callable[
+        [budget_service.CreateBudgetRequest],
+        typing.Union[budget_model.Budget, typing.Awaitable[budget_model.Budget]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def update_budget(self) -> typing.Callable[
-            [budget_service.UpdateBudgetRequest],
-            typing.Union[
-                budget_model.Budget,
-                typing.Awaitable[budget_model.Budget]
-            ]]:
+    def update_budget(
+        self,
+    ) -> typing.Callable[
+        [budget_service.UpdateBudgetRequest],
+        typing.Union[budget_model.Budget, typing.Awaitable[budget_model.Budget]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def get_budget(self) -> typing.Callable[
-            [budget_service.GetBudgetRequest],
-            typing.Union[
-                budget_model.Budget,
-                typing.Awaitable[budget_model.Budget]
-            ]]:
+    def get_budget(
+        self,
+    ) -> typing.Callable[
+        [budget_service.GetBudgetRequest],
+        typing.Union[budget_model.Budget, typing.Awaitable[budget_model.Budget]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def list_budgets(self) -> typing.Callable[
-            [budget_service.ListBudgetsRequest],
-            typing.Union[
-                budget_service.ListBudgetsResponse,
-                typing.Awaitable[budget_service.ListBudgetsResponse]
-            ]]:
+    def list_budgets(
+        self,
+    ) -> typing.Callable[
+        [budget_service.ListBudgetsRequest],
+        typing.Union[
+            budget_service.ListBudgetsResponse,
+            typing.Awaitable[budget_service.ListBudgetsResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def delete_budget(self) -> typing.Callable[
-            [budget_service.DeleteBudgetRequest],
-            typing.Union[
-                empty.Empty,
-                typing.Awaitable[empty.Empty]
-            ]]:
+    def delete_budget(
+        self,
+    ) -> typing.Callable[
+        [budget_service.DeleteBudgetRequest],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
+    ]:
         raise NotImplementedError()
 
 
-__all__ = (
-    'BudgetServiceTransport',
-)
+__all__ = ("BudgetServiceTransport",)
