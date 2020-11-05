@@ -25,8 +25,8 @@ from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
-from google.cloud.billing.budgets_v1beta1.types import budget_model
-from google.cloud.billing.budgets_v1beta1.types import budget_service
+from google.cloud.billing.budgets_v1.types import budget_model
+from google.cloud.billing.budgets_v1.types import budget_service
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 

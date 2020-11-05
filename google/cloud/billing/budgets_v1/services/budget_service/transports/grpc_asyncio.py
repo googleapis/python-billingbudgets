@@ -27,8 +27,8 @@ from google.auth.transport.grpc import SslCredentials  # type: ignore
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
-from google.cloud.billing.budgets_v1beta1.types import budget_model
-from google.cloud.billing.budgets_v1beta1.types import budget_service
+from google.cloud.billing.budgets_v1.types import budget_model
+from google.cloud.billing.budgets_v1.types import budget_service
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 from .base import BudgetServiceTransport, DEFAULT_CLIENT_INFO
@@ -243,10 +243,10 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
     ) -> Callable[[budget_service.CreateBudgetRequest], Awaitable[budget_model.Budget]]:
         r"""Return a callable for the create budget method over gRPC.
 
-        Creates a new budget. See
-        <a href="https://cloud.google.com/billing/quotas">Quotas
-        and limits</a> for more information on the limits of the
-        number of budgets you can create.
+        Creates a new budget. See `Quotas and
+        limits <https://cloud.google.com/billing/quotas>`__ for more
+        information on the limits of the number of budgets you can
+        create.
 
         Returns:
             Callable[[~.CreateBudgetRequest],
@@ -260,7 +260,7 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # to pass in the functions for each.
         if "create_budget" not in self._stubs:
             self._stubs["create_budget"] = self.grpc_channel.unary_unary(
-                "/google.cloud.billing.budgets.v1beta1.BudgetService/CreateBudget",
+                "/google.cloud.billing.budgets.v1.BudgetService/CreateBudget",
                 request_serializer=budget_service.CreateBudgetRequest.serialize,
                 response_deserializer=budget_model.Budget.deserialize,
             )
@@ -290,7 +290,7 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # to pass in the functions for each.
         if "update_budget" not in self._stubs:
             self._stubs["update_budget"] = self.grpc_channel.unary_unary(
-                "/google.cloud.billing.budgets.v1beta1.BudgetService/UpdateBudget",
+                "/google.cloud.billing.budgets.v1.BudgetService/UpdateBudget",
                 request_serializer=budget_service.UpdateBudgetRequest.serialize,
                 response_deserializer=budget_model.Budget.deserialize,
             )
@@ -321,7 +321,7 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # to pass in the functions for each.
         if "get_budget" not in self._stubs:
             self._stubs["get_budget"] = self.grpc_channel.unary_unary(
-                "/google.cloud.billing.budgets.v1beta1.BudgetService/GetBudget",
+                "/google.cloud.billing.budgets.v1.BudgetService/GetBudget",
                 request_serializer=budget_service.GetBudgetRequest.serialize,
                 response_deserializer=budget_model.Budget.deserialize,
             )
@@ -355,7 +355,7 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # to pass in the functions for each.
         if "list_budgets" not in self._stubs:
             self._stubs["list_budgets"] = self.grpc_channel.unary_unary(
-                "/google.cloud.billing.budgets.v1beta1.BudgetService/ListBudgets",
+                "/google.cloud.billing.budgets.v1.BudgetService/ListBudgets",
                 request_serializer=budget_service.ListBudgetsRequest.serialize,
                 response_deserializer=budget_service.ListBudgetsResponse.deserialize,
             )
@@ -382,7 +382,7 @@ class BudgetServiceGrpcAsyncIOTransport(BudgetServiceTransport):
         # to pass in the functions for each.
         if "delete_budget" not in self._stubs:
             self._stubs["delete_budget"] = self.grpc_channel.unary_unary(
-                "/google.cloud.billing.budgets.v1beta1.BudgetService/DeleteBudget",
+                "/google.cloud.billing.budgets.v1.BudgetService/DeleteBudget",
                 request_serializer=budget_service.DeleteBudgetRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )

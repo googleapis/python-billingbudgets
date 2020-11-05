@@ -32,16 +32,14 @@ from google.api_core import grpc_helpers
 from google.api_core import grpc_helpers_async
 from google.auth import credentials
 from google.auth.exceptions import MutualTLSChannelError
-from google.cloud.billing.budgets_v1beta1.services.budget_service import (
+from google.cloud.billing.budgets_v1.services.budget_service import (
     BudgetServiceAsyncClient,
 )
-from google.cloud.billing.budgets_v1beta1.services.budget_service import (
-    BudgetServiceClient,
-)
-from google.cloud.billing.budgets_v1beta1.services.budget_service import pagers
-from google.cloud.billing.budgets_v1beta1.services.budget_service import transports
-from google.cloud.billing.budgets_v1beta1.types import budget_model
-from google.cloud.billing.budgets_v1beta1.types import budget_service
+from google.cloud.billing.budgets_v1.services.budget_service import BudgetServiceClient
+from google.cloud.billing.budgets_v1.services.budget_service import pagers
+from google.cloud.billing.budgets_v1.services.budget_service import transports
+from google.cloud.billing.budgets_v1.types import budget_model
+from google.cloud.billing.budgets_v1.types import budget_service
 from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import struct_pb2 as struct  # type: ignore
@@ -428,7 +426,7 @@ def test_budget_service_client_client_options_credentials_file(
 
 def test_budget_service_client_client_options_from_dict():
     with mock.patch(
-        "google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceGrpcTransport.__init__"
+        "google.cloud.billing.budgets_v1.services.budget_service.transports.BudgetServiceGrpcTransport.__init__"
     ) as grpc_transport:
         grpc_transport.return_value = None
         client = BudgetServiceClient(
@@ -579,6 +577,83 @@ async def test_create_budget_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
+def test_create_budget_flattened():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.create_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_model.Budget()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.create_budget(
+            parent="parent_value", budget=budget_model.Budget(name="name_value"),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+        assert args[0].budget == budget_model.Budget(name="name_value")
+
+
+def test_create_budget_flattened_error():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.create_budget(
+            budget_service.CreateBudgetRequest(),
+            parent="parent_value",
+            budget=budget_model.Budget(name="name_value"),
+        )
+
+
+@pytest.mark.asyncio
+async def test_create_budget_flattened_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.create_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_model.Budget()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget())
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.create_budget(
+            parent="parent_value", budget=budget_model.Budget(name="name_value"),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+        assert args[0].budget == budget_model.Budget(name="name_value")
+
+
+@pytest.mark.asyncio
+async def test_create_budget_flattened_error_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.create_budget(
+            budget_service.CreateBudgetRequest(),
+            parent="parent_value",
+            budget=budget_model.Budget(name="name_value"),
+        )
+
+
 def test_update_budget(
     transport: str = "grpc", request_type=budget_service.UpdateBudgetRequest
 ):
@@ -711,6 +786,85 @@ async def test_update_budget_field_headers_async():
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
     assert ("x-goog-request-params", "budget.name=budget.name/value",) in kw["metadata"]
+
+
+def test_update_budget_flattened():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.update_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_model.Budget()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.update_budget(
+            budget=budget_model.Budget(name="name_value"),
+            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].budget == budget_model.Budget(name="name_value")
+
+        assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
+
+
+def test_update_budget_flattened_error():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.update_budget(
+            budget_service.UpdateBudgetRequest(),
+            budget=budget_model.Budget(name="name_value"),
+            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+        )
+
+
+@pytest.mark.asyncio
+async def test_update_budget_flattened_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.update_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_model.Budget()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget())
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.update_budget(
+            budget=budget_model.Budget(name="name_value"),
+            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+        )
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].budget == budget_model.Budget(name="name_value")
+
+        assert args[0].update_mask == field_mask.FieldMask(paths=["paths_value"])
+
+
+@pytest.mark.asyncio
+async def test_update_budget_flattened_error_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.update_budget(
+            budget_service.UpdateBudgetRequest(),
+            budget=budget_model.Budget(name="name_value"),
+            update_mask=field_mask.FieldMask(paths=["paths_value"]),
+        )
 
 
 def test_get_budget(
@@ -847,6 +1001,71 @@ async def test_get_budget_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
+def test_get_budget_flattened():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_model.Budget()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.get_budget(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].name == "name_value"
+
+
+def test_get_budget_flattened_error():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.get_budget(
+            budget_service.GetBudgetRequest(), name="name_value",
+        )
+
+
+@pytest.mark.asyncio
+async def test_get_budget_flattened_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_model.Budget()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(budget_model.Budget())
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.get_budget(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].name == "name_value"
+
+
+@pytest.mark.asyncio
+async def test_get_budget_flattened_error_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.get_budget(
+            budget_service.GetBudgetRequest(), name="name_value",
+        )
+
+
 def test_list_budgets(
     transport: str = "grpc", request_type=budget_service.ListBudgetsRequest
 ):
@@ -971,6 +1190,73 @@ async def test_list_budgets_field_headers_async():
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
+
+
+def test_list_budgets_flattened():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.list_budgets), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_service.ListBudgetsResponse()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.list_budgets(parent="parent_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+
+def test_list_budgets_flattened_error():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.list_budgets(
+            budget_service.ListBudgetsRequest(), parent="parent_value",
+        )
+
+
+@pytest.mark.asyncio
+async def test_list_budgets_flattened_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.list_budgets), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = budget_service.ListBudgetsResponse()
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            budget_service.ListBudgetsResponse()
+        )
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.list_budgets(parent="parent_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].parent == "parent_value"
+
+
+@pytest.mark.asyncio
+async def test_list_budgets_flattened_error_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.list_budgets(
+            budget_service.ListBudgetsRequest(), parent="parent_value",
+        )
 
 
 def test_list_budgets_pager():
@@ -1226,6 +1512,71 @@ async def test_delete_budget_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
+def test_delete_budget_flattened():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.delete_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = None
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.delete_budget(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].name == "name_value"
+
+
+def test_delete_budget_flattened_error():
+    client = BudgetServiceClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.delete_budget(
+            budget_service.DeleteBudgetRequest(), name="name_value",
+        )
+
+
+@pytest.mark.asyncio
+async def test_delete_budget_flattened_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.delete_budget), "__call__") as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = None
+
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        response = await client.delete_budget(name="name_value",)
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0].name == "name_value"
+
+
+@pytest.mark.asyncio
+async def test_delete_budget_flattened_error_async():
+    client = BudgetServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        await client.delete_budget(
+            budget_service.DeleteBudgetRequest(), name="name_value",
+        )
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.BudgetServiceGrpcTransport(
@@ -1313,7 +1664,7 @@ def test_budget_service_base_transport_error():
 def test_budget_service_base_transport():
     # Instantiate the base transport.
     with mock.patch(
-        "google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceTransport.__init__"
+        "google.cloud.billing.budgets_v1.services.budget_service.transports.BudgetServiceTransport.__init__"
     ) as Transport:
         Transport.return_value = None
         transport = transports.BudgetServiceTransport(
@@ -1339,7 +1690,7 @@ def test_budget_service_base_transport_with_credentials_file():
     with mock.patch.object(
         auth, "load_credentials_from_file"
     ) as load_creds, mock.patch(
-        "google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceTransport._prep_wrapped_messages"
+        "google.cloud.billing.budgets_v1.services.budget_service.transports.BudgetServiceTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
@@ -1359,7 +1710,7 @@ def test_budget_service_base_transport_with_credentials_file():
 def test_budget_service_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
     with mock.patch.object(auth, "default") as adc, mock.patch(
-        "google.cloud.billing.budgets_v1beta1.services.budget_service.transports.BudgetServiceTransport._prep_wrapped_messages"
+        "google.cloud.billing.budgets_v1.services.budget_service.transports.BudgetServiceTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
         adc.return_value = (credentials.AnonymousCredentials(), None)

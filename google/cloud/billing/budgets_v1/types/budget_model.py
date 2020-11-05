@@ -23,13 +23,13 @@ from google.type import money_pb2 as money  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.billing.budgets.v1beta1",
+    package="google.cloud.billing.budgets.v1",
     manifest={
         "Budget",
         "BudgetAmount",
         "LastPeriodAmount",
         "ThresholdRule",
-        "AllUpdatesRule",
+        "NotificationsRule",
         "Filter",
     },
 )
@@ -49,8 +49,8 @@ class Budget(proto.Message):
             implies the scope of a budget. Values are of the form
             ``billingAccounts/{billingAccountId}/budgets/{budgetId}``.
         display_name (str):
-            User data for display name in UI.
-            Validation: <= 60 chars.
+            User data for display name in UI. The name
+            must be less than or equal to 60 characters.
         budget_filter (~.budget_model.Filter):
             Optional. Filters that define which resources
             are used to compute the actual spend against the
@@ -62,7 +62,7 @@ class Budget(proto.Message):
             (notifications of thresholds being crossed) when
             spend exceeds the specified percentages of the
             budget.
-        all_updates_rule (~.budget_model.AllUpdatesRule):
+        notifications_rule (~.budget_model.NotificationsRule):
             Optional. Rules to apply to notifications
             sent based on budget spend and thresholds.
         etag (str):
@@ -84,7 +84,9 @@ class Budget(proto.Message):
         proto.MESSAGE, number=5, message="ThresholdRule",
     )
 
-    all_updates_rule = proto.Field(proto.MESSAGE, number=6, message="AllUpdatesRule",)
+    notifications_rule = proto.Field(
+        proto.MESSAGE, number=6, message="NotificationsRule",
+    )
 
     etag = proto.Field(proto.STRING, number=7)
 
@@ -154,9 +156,9 @@ class ThresholdRule(proto.Message):
     spend_basis = proto.Field(proto.ENUM, number=2, enum=Basis,)
 
 
-class AllUpdatesRule(proto.Message):
-    r"""AllUpdatesRule defines notifications that are sent based on
-    budget spend and thresholds.
+class NotificationsRule(proto.Message):
+    r"""NotificationsRule defines notifications that are sent based
+    on budget spend and thresholds.
 
     Attributes:
         pubsub_topic (str):
@@ -217,14 +219,17 @@ class Filter(proto.Message):
             account, regardless of which project the usage occurred on.
             Only zero or one project can be specified currently.
         credit_types (Sequence[str]):
-            Optional. A list of credit types to be subtracted from gross
-            cost to determine the spend for threshold calculations if
-            and only if credit_types_treatment is
-            INCLUDE_SPECIFIED_CREDITS. If credit_types_treatment is not
-            INCLUDE_SPECIFIED_CREDITS, this field must be empty. See
-            credits.type at
-            https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#data-schema
-            for a list of acceptable credit type values in this field.
+            Optional. If
+            [Filter.credit_types_treatment][google.cloud.billing.budgets.v1.Filter.credit_types_treatment]
+            is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types
+            to be subtracted from gross cost to determine the spend for
+            threshold calculations.
+
+            If
+            [Filter.credit_types_treatment][google.cloud.billing.budgets.v1.Filter.credit_types_treatment]
+            is **not** INCLUDE_SPECIFIED_CREDITS, this field must be
+            empty. See `a list of acceptable credit type
+            values <https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type>`__.
         credit_types_treatment (~.budget_model.Filter.CreditTypesTreatment):
             Optional. If not set, default behavior is
             ``INCLUDE_ALL_CREDITS``.
@@ -241,8 +246,8 @@ class Filter(proto.Message):
             only this set of subaccounts should be included in the
             budget. If a subaccount is set to the name of the parent
             account, usage from the parent account will be included. If
-            omitted, the report will include usage from the parent
-            account and all subaccounts, if they exist.
+            the field is omitted, the report will include usage from the
+            parent account and all subaccounts, if they exist.
         labels (Sequence[~.budget_model.Filter.LabelsEntry]):
             Optional. A single label and value pair
             specifying that usage from only this set of

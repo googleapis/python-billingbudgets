@@ -28,9 +28,10 @@ from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.cloud.billing.budgets_v1beta1.services.budget_service import pagers
-from google.cloud.billing.budgets_v1beta1.types import budget_model
-from google.cloud.billing.budgets_v1beta1.types import budget_service
+from google.cloud.billing.budgets_v1.services.budget_service import pagers
+from google.cloud.billing.budgets_v1.types import budget_model
+from google.cloud.billing.budgets_v1.types import budget_service
+from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 from .transports.base import BudgetServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import BudgetServiceGrpcAsyncIOTransport
@@ -148,18 +149,32 @@ class BudgetServiceAsyncClient:
         self,
         request: budget_service.CreateBudgetRequest = None,
         *,
+        parent: str = None,
+        budget: budget_model.Budget = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> budget_model.Budget:
-        r"""Creates a new budget. See
-        <a href="https://cloud.google.com/billing/quotas">Quotas
-        and limits</a> for more information on the limits of the
-        number of budgets you can create.
+        r"""Creates a new budget. See `Quotas and
+        limits <https://cloud.google.com/billing/quotas>`__ for more
+        information on the limits of the number of budgets you can
+        create.
 
         Args:
             request (:class:`~.budget_service.CreateBudgetRequest`):
                 The request object. Request for CreateBudget
+            parent (:class:`str`):
+                Required. The name of the billing account to create the
+                budget in. Values are of the form
+                ``billingAccounts/{billingAccountId}``.
+                This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
+            budget (:class:`~.budget_model.Budget`):
+                Required. Budget to create.
+                This corresponds to the ``budget`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -181,8 +196,24 @@ class BudgetServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([parent, budget])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = budget_service.CreateBudgetRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+
+        if parent is not None:
+            request.parent = parent
+        if budget is not None:
+            request.budget = budget
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -208,6 +239,8 @@ class BudgetServiceAsyncClient:
         self,
         request: budget_service.UpdateBudgetRequest = None,
         *,
+        budget: budget_model.Budget = None,
+        update_mask: field_mask.FieldMask = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -221,6 +254,23 @@ class BudgetServiceAsyncClient:
         Args:
             request (:class:`~.budget_service.UpdateBudgetRequest`):
                 The request object. Request for UpdateBudget
+            budget (:class:`~.budget_model.Budget`):
+                Required. The updated budget object.
+                The budget to update is specified by the
+                budget name in the budget.
+                This corresponds to the ``budget`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
+            update_mask (:class:`~.field_mask.FieldMask`):
+                Optional. Indicates which fields in the provided budget
+                to update. Read-only fields (such as ``name``) cannot be
+                changed. If this is not provided, then only fields with
+                non-default values from the request are updated. See
+                https://developers.google.com/protocol-buffers/docs/proto3#default
+                for more details about default values.
+                This corresponds to the ``update_mask`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -242,8 +292,24 @@ class BudgetServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([budget, update_mask])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = budget_service.UpdateBudgetRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+
+        if budget is not None:
+            request.budget = budget
+        if update_mask is not None:
+            request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -279,6 +345,7 @@ class BudgetServiceAsyncClient:
         self,
         request: budget_service.GetBudgetRequest = None,
         *,
+        name: str = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -293,6 +360,12 @@ class BudgetServiceAsyncClient:
         Args:
             request (:class:`~.budget_service.GetBudgetRequest`):
                 The request object. Request for GetBudget
+            name (:class:`str`):
+                Required. Name of budget to get. Values are of the form
+                ``billingAccounts/{billingAccountId}/budgets/{budgetId}``.
+                This corresponds to the ``name`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -314,8 +387,22 @@ class BudgetServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = budget_service.GetBudgetRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+
+        if name is not None:
+            request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -349,6 +436,7 @@ class BudgetServiceAsyncClient:
         self,
         request: budget_service.ListBudgetsRequest = None,
         *,
+        parent: str = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -363,6 +451,13 @@ class BudgetServiceAsyncClient:
         Args:
             request (:class:`~.budget_service.ListBudgetsRequest`):
                 The request object. Request for ListBudgets
+            parent (:class:`str`):
+                Required. Name of billing account to list budgets under.
+                Values are of the form
+                ``billingAccounts/{billingAccountId}``.
+                This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -379,8 +474,22 @@ class BudgetServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = budget_service.ListBudgetsRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+
+        if parent is not None:
+            request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -420,6 +529,7 @@ class BudgetServiceAsyncClient:
         self,
         request: budget_service.DeleteBudgetRequest = None,
         *,
+        name: str = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -430,6 +540,13 @@ class BudgetServiceAsyncClient:
         Args:
             request (:class:`~.budget_service.DeleteBudgetRequest`):
                 The request object. Request for DeleteBudget
+            name (:class:`str`):
+                Required. Name of the budget to delete. Values are of
+                the form
+                ``billingAccounts/{billingAccountId}/budgets/{budgetId}``.
+                This corresponds to the ``name`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -438,8 +555,22 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = budget_service.DeleteBudgetRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+
+        if name is not None:
+            request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
