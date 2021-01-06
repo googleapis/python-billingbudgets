@@ -81,6 +81,7 @@ class BudgetServiceAsyncClient:
         BudgetServiceClient.parse_common_location_path
     )
 
+    from_service_account_info = BudgetServiceClient.from_service_account_info
     from_service_account_file = BudgetServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -161,16 +162,17 @@ class BudgetServiceAsyncClient:
         create.
 
         Args:
-            request (:class:`~.budget_service.CreateBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1.types.CreateBudgetRequest`):
                 The request object. Request for CreateBudget
             parent (:class:`str`):
                 Required. The name of the billing account to create the
                 budget in. Values are of the form
                 ``billingAccounts/{billingAccountId}``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            budget (:class:`~.budget_model.Budget`):
+            budget (:class:`google.cloud.billing.budgets_v1.types.Budget`):
                 Required. Budget to create.
                 This corresponds to the ``budget`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -183,7 +185,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.budget_model.Budget:
+            google.cloud.billing.budgets_v1.types.Budget:
                 A budget is a plan that describes
                 what you expect to spend on Cloud
                 projects, plus the rules to execute as
@@ -252,22 +254,24 @@ class BudgetServiceAsyncClient:
         changed by this method.
 
         Args:
-            request (:class:`~.budget_service.UpdateBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1.types.UpdateBudgetRequest`):
                 The request object. Request for UpdateBudget
-            budget (:class:`~.budget_model.Budget`):
+            budget (:class:`google.cloud.billing.budgets_v1.types.Budget`):
                 Required. The updated budget object.
                 The budget to update is specified by the
                 budget name in the budget.
+
                 This corresponds to the ``budget`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`~.field_mask.FieldMask`):
+            update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`):
                 Optional. Indicates which fields in the provided budget
                 to update. Read-only fields (such as ``name``) cannot be
                 changed. If this is not provided, then only fields with
                 non-default values from the request are updated. See
                 https://developers.google.com/protocol-buffers/docs/proto3#default
                 for more details about default values.
+
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -279,7 +283,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.budget_model.Budget:
+            google.cloud.billing.budgets_v1.types.Budget:
                 A budget is a plan that describes
                 what you expect to spend on Cloud
                 projects, plus the rules to execute as
@@ -358,11 +362,12 @@ class BudgetServiceAsyncClient:
         Cloud Console.
 
         Args:
-            request (:class:`~.budget_service.GetBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1.types.GetBudgetRequest`):
                 The request object. Request for GetBudget
             name (:class:`str`):
                 Required. Name of budget to get. Values are of the form
                 ``billingAccounts/{billingAccountId}/budgets/{budgetId}``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -374,7 +379,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.budget_model.Budget:
+            google.cloud.billing.budgets_v1.types.Budget:
                 A budget is a plan that describes
                 what you expect to spend on Cloud
                 projects, plus the rules to execute as
@@ -449,12 +454,13 @@ class BudgetServiceAsyncClient:
         Cloud Console.
 
         Args:
-            request (:class:`~.budget_service.ListBudgetsRequest`):
+            request (:class:`google.cloud.billing.budgets_v1.types.ListBudgetsRequest`):
                 The request object. Request for ListBudgets
             parent (:class:`str`):
                 Required. Name of billing account to list budgets under.
                 Values are of the form
                 ``billingAccounts/{billingAccountId}``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -466,7 +472,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListBudgetsAsyncPager:
+            google.cloud.billing.budgets_v1.services.budget_service.pagers.ListBudgetsAsyncPager:
                 Response for ListBudgets
                 Iterating over this object will yield
                 results and resolve additional pages
@@ -538,12 +544,13 @@ class BudgetServiceAsyncClient:
         deleted.
 
         Args:
-            request (:class:`~.budget_service.DeleteBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1.types.DeleteBudgetRequest`):
                 The request object. Request for DeleteBudget
             name (:class:`str`):
                 Required. Name of the budget to delete. Values are of
                 the form
                 ``billingAccounts/{billingAccountId}/budgets/{budgetId}``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.

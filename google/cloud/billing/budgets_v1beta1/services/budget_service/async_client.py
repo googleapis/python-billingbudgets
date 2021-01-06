@@ -80,6 +80,7 @@ class BudgetServiceAsyncClient:
         BudgetServiceClient.parse_common_location_path
     )
 
+    from_service_account_info = BudgetServiceClient.from_service_account_info
     from_service_account_file = BudgetServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -158,7 +159,7 @@ class BudgetServiceAsyncClient:
         number of budgets you can create.
 
         Args:
-            request (:class:`~.budget_service.CreateBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1beta1.types.CreateBudgetRequest`):
                 The request object. Request for CreateBudget
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -168,7 +169,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.budget_model.Budget:
+            google.cloud.billing.budgets_v1beta1.types.Budget:
                 A budget is a plan that describes
                 what you expect to spend on Cloud
                 projects, plus the rules to execute as
@@ -219,7 +220,7 @@ class BudgetServiceAsyncClient:
         changed by this method.
 
         Args:
-            request (:class:`~.budget_service.UpdateBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1beta1.types.UpdateBudgetRequest`):
                 The request object. Request for UpdateBudget
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -229,7 +230,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.budget_model.Budget:
+            google.cloud.billing.budgets_v1beta1.types.Budget:
                 A budget is a plan that describes
                 what you expect to spend on Cloud
                 projects, plus the rules to execute as
@@ -291,7 +292,7 @@ class BudgetServiceAsyncClient:
         Cloud Console.
 
         Args:
-            request (:class:`~.budget_service.GetBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1beta1.types.GetBudgetRequest`):
                 The request object. Request for GetBudget
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -301,7 +302,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.budget_model.Budget:
+            google.cloud.billing.budgets_v1beta1.types.Budget:
                 A budget is a plan that describes
                 what you expect to spend on Cloud
                 projects, plus the rules to execute as
@@ -361,7 +362,7 @@ class BudgetServiceAsyncClient:
         Cloud Console.
 
         Args:
-            request (:class:`~.budget_service.ListBudgetsRequest`):
+            request (:class:`google.cloud.billing.budgets_v1beta1.types.ListBudgetsRequest`):
                 The request object. Request for ListBudgets
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -371,7 +372,7 @@ class BudgetServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListBudgetsAsyncPager:
+            google.cloud.billing.budgets_v1beta1.services.budget_service.pagers.ListBudgetsAsyncPager:
                 Response for ListBudgets
                 Iterating over this object will yield
                 results and resolve additional pages
@@ -428,7 +429,7 @@ class BudgetServiceAsyncClient:
         deleted.
 
         Args:
-            request (:class:`~.budget_service.DeleteBudgetRequest`):
+            request (:class:`google.cloud.billing.budgets_v1beta1.types.DeleteBudgetRequest`):
                 The request object. Request for DeleteBudget
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
