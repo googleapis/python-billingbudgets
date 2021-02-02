@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-billingbudgets.git",
-        "sha": "62cd894af1cc1aeaca48725dcd4665c8ce48df20"
+        "sha": "9ab82d35602fd62ccd1ebffd908886b3e6cfac34"
       }
     },
     {
@@ -93,6 +93,7 @@
     "CONTRIBUTING.rst",
     "LICENSE",
     "MANIFEST.in",
+    "billing-budgets-v1beta1-py.tar.gz",
     "docs/_static/custom.css",
     "docs/_templates/layout.html",
     "docs/budgets_v1/services.rst",
