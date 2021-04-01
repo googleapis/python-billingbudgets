@@ -95,9 +95,10 @@ class BudgetAmount(proto.Message):
     Attributes:
         specified_amount (google.type.money_pb2.Money):
             A specified amount to use as the budget. ``currency_code``
-            is optional. If specified, it must match the currency of the
-            billing account. The ``currency_code`` is provided on
-            output.
+            is optional. If specified when creating a budget, it must
+            match the currency of the billing account. If specified when
+            updating a budget, it must match the existing budget
+            currency_code. The ``currency_code`` is provided on output.
         last_period_amount (google.cloud.billing.budgets_v1beta1.types.LastPeriodAmount):
             Use the last period's actual spend as the
             budget for the present period.
@@ -173,10 +174,13 @@ class AllUpdatesRule(proto.Message):
             https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications
             for more details on Pub/Sub roles and permissions.
         schema_version (str):
-            Optional. The schema version of the notification sent to
-            ``pubsub_topic``. Only "1.0" is accepted. It represents the
-            JSON schema as defined in
-            https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format
+            Optional. Required when
+            [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic]
+            is set. The schema version of the notification sent to
+            [AllUpdatesRule.pubsub_topic][google.cloud.billing.budgets.v1beta1.AllUpdatesRule.pubsub_topic].
+            Only "1.0" is accepted. It represents the JSON schema as
+            defined in
+            https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.
         monitoring_notification_channels (Sequence[str]):
             Optional. Targets to send notifications to when a threshold
             is exceeded. This is in addition to default recipients who
