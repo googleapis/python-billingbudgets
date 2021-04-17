@@ -43,6 +43,7 @@ from google.cloud.billing.budgets_v1.types import budget_service
 from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import struct_pb2 as struct  # type: ignore
+from google.type import date_pb2 as date  # type: ignore
 from google.type import money_pb2 as money  # type: ignore
 
 
