@@ -19,9 +19,11 @@ from .budget_model import (
     AllUpdatesRule,
     Budget,
     BudgetAmount,
+    CustomPeriod,
     Filter,
     LastPeriodAmount,
     ThresholdRule,
+    CalendarPeriod,
 )
 from .budget_service import (
     CreateBudgetRequest,
@@ -36,9 +38,11 @@ __all__ = (
     "AllUpdatesRule",
     "Budget",
     "BudgetAmount",
+    "CustomPeriod",
     "Filter",
     "LastPeriodAmount",
     "ThresholdRule",
+    "CalendarPeriod",
     "CreateBudgetRequest",
     "DeleteBudgetRequest",
     "GetBudgetRequest",

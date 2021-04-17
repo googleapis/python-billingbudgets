@@ -19,6 +19,8 @@ from .services.budget_service import BudgetServiceClient
 from .types.budget_model import AllUpdatesRule
 from .types.budget_model import Budget
 from .types.budget_model import BudgetAmount
+from .types.budget_model import CalendarPeriod
+from .types.budget_model import CustomPeriod
 from .types.budget_model import Filter
 from .types.budget_model import LastPeriodAmount
 from .types.budget_model import ThresholdRule
@@ -34,7 +36,9 @@ __all__ = (
     "AllUpdatesRule",
     "Budget",
     "BudgetAmount",
+    "CalendarPeriod",
     "CreateBudgetRequest",
+    "CustomPeriod",
     "DeleteBudgetRequest",
     "Filter",
     "GetBudgetRequest",
