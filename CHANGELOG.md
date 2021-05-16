@@ -1,4 +1,12 @@
 # Changelog
+### [1.1.2](https://www.github.com/googleapis/python-billingbudgets/compare/v1.1.1...v1.1.2) (2021-05-16)
+
+
+### Bug Fixes
+
+* **deps:** add packaging requirement ([#93](https://www.github.com/googleapis/python-billingbudgets/issues/93)) ([cbc882c](https://www.github.com/googleapis/python-billingbudgets/commit/cbc882c3562d88b4563ae715b74379390ba41e1f))
+* use correct retry deadlines ([#66](https://www.github.com/googleapis/python-billingbudgets/issues/66)) ([ebf04ba](https://www.github.com/googleapis/python-billingbudgets/commit/ebf04baa60cba88a556465b18fb5fc3a3ae9a0a0))
+
 ### [1.1.1](https://www.github.com/googleapis/python-billingbudgets/compare/v1.1.0...v1.1.1) (2021-02-12)
 
 
