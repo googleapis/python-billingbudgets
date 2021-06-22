@@ -1,4 +1,11 @@
 # Changelog
+### [1.2.1](https://www.github.com/googleapis/python-billingbudgets/compare/v1.2.0...v1.2.1) (2021-06-22)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-billingbudgets/issues/1127)) ([#102](https://www.github.com/googleapis/python-billingbudgets/issues/102)) ([3d88e32](https://www.github.com/googleapis/python-billingbudgets/commit/3d88e32d967e97a72b8162bd0ed19552aa4c253e)), closes [#1126](https://www.github.com/googleapis/python-billingbudgets/issues/1126)
+
 ## [1.2.0](https://www.github.com/googleapis/python-billingbudgets/compare/v1.1.1...v1.2.0) (2021-05-17)
 
 ### Features
