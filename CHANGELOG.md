@@ -9,7 +9,6 @@
 
 ### Bug Fixes
 
-* disable always_use_jwt_access ([e9ffec8](https://www.github.com/googleapis/python-billingbudgets/commit/e9ffec8dafcdcc2692050326daa8d3ac13b0e63a))
 * disable always_use_jwt_access ([#112](https://www.github.com/googleapis/python-billingbudgets/issues/112)) ([e9ffec8](https://www.github.com/googleapis/python-billingbudgets/commit/e9ffec8dafcdcc2692050326daa8d3ac13b0e63a))
 
 
