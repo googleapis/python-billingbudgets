@@ -40,12 +40,13 @@ s.remove_staging_dirs()
 # Add templated files
 # ----------------------------------------------------------------------------
 templated_files = common.py_library(
-python.py_samples(skip_readmes=True)
     samples=False,  # set to True only if there are samples
     microgenerator=True,
     cov_level=98,
 )
 s.move(templated_files, excludes=[".coveragerc"])  # microgenerator has a good .coveragerc file
+
+python.py_samples(skip_readmes=True)
 
 # Update the namespace in noxfile.py
 s.replace(
