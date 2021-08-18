@@ -17,6 +17,7 @@
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
+from synthtool.languages import python
 
 logging.basicConfig(level=logging.DEBUG)
 
