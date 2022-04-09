@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -444,7 +444,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.billing import budgets_v1
+                    from google.cloud.billing import budgets_v1
 
             def sample_create_budget():
                 # Create a client
@@ -559,7 +559,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.billing import budgets_v1
+                    from google.cloud.billing import budgets_v1
 
             def sample_update_budget():
                 # Create a client
@@ -681,7 +681,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.billing import budgets_v1
+                    from google.cloud.billing import budgets_v1
 
             def sample_get_budget():
                 # Create a client
@@ -788,7 +788,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.billing import budgets_v1
+                    from google.cloud.billing import budgets_v1
 
             def sample_list_budgets():
                 # Create a client
@@ -897,7 +897,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.billing import budgets_v1
+                    from google.cloud.billing import budgets_v1
 
             def sample_delete_budget():
                 # Create a client
