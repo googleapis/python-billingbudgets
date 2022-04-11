@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -222,7 +222,6 @@ class BudgetServiceAsyncClient:
         information on the limits of the number of budgets you can
         create.
 
-
         .. code-block:: python
 
             from google.cloud.billing import budgets_v1
@@ -337,7 +336,6 @@ class BudgetServiceAsyncClient:
         fields that are not exposed in this API will not be
         changed by this method.
 
-
         .. code-block:: python
 
             from google.cloud.billing import budgets_v1
@@ -425,8 +423,7 @@ class BudgetServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -468,7 +465,6 @@ class BudgetServiceAsyncClient:
         reading from the API, you will not see these fields in
         the return value, though they may have been set in the
         Cloud Console.
-
 
         .. code-block:: python
 
@@ -544,8 +540,7 @@ class BudgetServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -585,7 +580,6 @@ class BudgetServiceAsyncClient:
         reading from the API, you will not see these fields in
         the return value, though they may have been set in the
         Cloud Console.
-
 
         .. code-block:: python
 
@@ -658,8 +652,7 @@ class BudgetServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -704,7 +697,6 @@ class BudgetServiceAsyncClient:
     ) -> None:
         r"""Deletes a budget. Returns successfully if already
         deleted.
-
 
         .. code-block:: python
 
@@ -765,8 +757,7 @@ class BudgetServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
