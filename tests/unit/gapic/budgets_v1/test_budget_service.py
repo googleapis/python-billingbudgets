@@ -2291,7 +2291,6 @@ def test_budget_service_transport_auth_adc(transport_class):
     [
         transports.BudgetServiceGrpcTransport,
         transports.BudgetServiceGrpcAsyncIOTransport,
-        transports.BudgetServiceRestTransport,
     ],
 )
 def test_budget_service_transport_auth_gdch_credentials(transport_class):
