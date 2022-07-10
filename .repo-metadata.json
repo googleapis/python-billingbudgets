@@ -14,5 +14,5 @@
     "default_version": "v1",
     "codeowner_team": "",
     "api_shortname": "billingbudgets",
-    "api_description": "allows you to avoid surprises on your bill by creating budgets to monitor all your Google Cloud charges in one place."
+    "api_description": "The Cloud Billing Budget API stores Cloud Billing budgets, which define a budget plan and the rules to execute as spend is tracked against that plan."
 }
