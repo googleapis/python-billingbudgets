@@ -3,7 +3,7 @@ Python Client for Cloud Billing Budget API
 
 |stable| |pypi| |versions|
 
-`Cloud Billing Budget API`_: allows you to avoid surprises on your bill by creating budgets to monitor all your Google Cloud charges in one place.
+`Cloud Billing Budget API`_: The Cloud Billing Budget API stores Cloud Billing budgets, which define a budget plan and the rules to execute as spend is tracked against that plan.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
