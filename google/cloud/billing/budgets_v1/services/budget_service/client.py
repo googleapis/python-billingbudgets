@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -58,7 +69,7 @@ class BudgetServiceClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[BudgetServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -333,7 +344,7 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, BudgetServiceTransport, None] = None,
+        transport: Optional[Union[str, BudgetServiceTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -431,12 +442,12 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
     def create_budget(
         self,
-        request: Union[budget_service.CreateBudgetRequest, dict] = None,
+        request: Optional[Union[budget_service.CreateBudgetRequest, dict]] = None,
         *,
-        parent: str = None,
-        budget: budget_model.Budget = None,
+        parent: Optional[str] = None,
+        budget: Optional[budget_model.Budget] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> budget_model.Budget:
         r"""Creates a new budget. See `Quotas and
@@ -551,12 +562,12 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
     def update_budget(
         self,
-        request: Union[budget_service.UpdateBudgetRequest, dict] = None,
+        request: Optional[Union[budget_service.UpdateBudgetRequest, dict]] = None,
         *,
-        budget: budget_model.Budget = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        budget: Optional[budget_model.Budget] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> budget_model.Budget:
         r"""Updates a budget and returns the updated budget.
@@ -679,11 +690,11 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
     def get_budget(
         self,
-        request: Union[budget_service.GetBudgetRequest, dict] = None,
+        request: Optional[Union[budget_service.GetBudgetRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> budget_model.Budget:
         r"""Returns a budget.
@@ -792,11 +803,11 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
     def list_budgets(
         self,
-        request: Union[budget_service.ListBudgetsRequest, dict] = None,
+        request: Optional[Union[budget_service.ListBudgetsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListBudgetsPager:
         r"""Returns a list of budgets for a billing account.
@@ -911,11 +922,11 @@ class BudgetServiceClient(metaclass=BudgetServiceClientMeta):
 
     def delete_budget(
         self,
-        request: Union[budget_service.DeleteBudgetRequest, dict] = None,
+        request: Optional[Union[budget_service.DeleteBudgetRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes a budget. Returns successfully if already
